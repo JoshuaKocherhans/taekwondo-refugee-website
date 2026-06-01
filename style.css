@@ -1,0 +1,541 @@
+/* ============================================
+   CSS VARIABLEN – SWISS TAEKWONDO UHP TEAM
+   Basierend auf dem offiziellen Style Guide
+   ============================================ */
+
+:root {
+
+  /* ---------- FARBEN: Primär & Akzent ---------- */
+  --farbe-rot: #C1002A;
+  --farbe-blau: #6374A2;
+
+  /* ---------- FARBEN: Dunkel & Neutral ---------- */
+  --farbe-schwarz: #000000;
+  --farbe-grau-body: #646464;
+  --farbe-grau-subtle: #A0A0A5;
+  --farbe-grau-border: #CCCCCC;
+
+  /* ---------- FARBEN: Hell & Flächen ---------- */
+  --farbe-bg-section: #F0F0F7;
+  --farbe-placeholder: #D9D9D9;
+  --farbe-weiss: #FFFFFF;
+
+  /* ---------- SECTION HINTERGRUNDFARBEN ---------- */
+  --bg-navigation:   #FFFFFF;
+  --bg-hero:         #000000;
+  --bg-ausgangslage: #F0F0F7;
+  --bg-ziel:         #FFFFFF;
+  --bg-ethik:        #F0F0F7;
+  --bg-bild:         #D9D9D9;
+  --bg-newsletter:   #C1002A;
+  --bg-athleten:     #F0F0F7;
+  --bg-schweiz:      #FFFFFF;
+  --bg-partners:     #C1002A;
+  --bg-footer:       #000000;
+
+  /* ---------- SCHRIFT ---------- */
+  --schrift-familie: 'Inter', sans-serif;
+  --schrift-gross:   28px;
+  --schrift-mittel:  20px;
+  --schrift-klein:   16px;
+  --schrift-winzig:  14px;
+
+  /* ---------- ABSTÄNDE ---------- */
+  --abstand-gross:   60px;
+  --abstand-mittel:  30px;
+  --abstand-klein:   15px;
+  --abstand-winzig:  8px;
+
+  /* ---------- SONSTIGES ---------- */
+  --radius: 4px;
+}
+
+
+/* ============================================
+   RESET
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--schrift-familie);
+  color: var(--farbe-grau-body);
+}
+
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.header {
+  background-color: var(--bg-navigation);
+  padding: var(--abstand-klein) var(--abstand-mittel);
+  box-shadow: 0px 2px 5px var(--farbe-grau-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  width: 80px;
+}
+
+.header__nav-link {
+  color: var(--farbe-schwarz);
+  text-decoration: none;
+  margin-left: var(--abstand-klein);
+  font-size: var(--schrift-winzig);
+  font-family: var(--schrift-familie);
+}
+
+.header__nav-link:hover {
+  color: var(--farbe-rot);
+}
+
+
+/* ============================================
+   HERO
+   ============================================ */
+
+.hero {
+  position: relative;
+  height: 500px;
+  background-color: var(--bg-hero);
+}
+
+.hero__bild {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+}
+
+.hero__inhalt {
+  position: absolute;
+  bottom: 40px;
+  left: 20px;
+}
+
+.hero__label {
+  color: var(--farbe-weiss);
+  font-size: var(--schrift-winzig);
+  font-family: var(--schrift-familie);
+  margin-bottom: var(--abstand-winzig);
+  margin-top: 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.hero__titel {
+  color: var(--farbe-weiss);
+  font-size: var(--schrift-gross);
+  font-family: var(--schrift-familie);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--abstand-klein);
+  line-height: 1.2;
+}
+
+.hero__button {
+  background-color: var(--farbe-rot);
+  color: var(--farbe-weiss);
+  padding: var(--abstand-winzig) var(--abstand-klein);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: var(--schrift-winzig);
+  font-family: var(--schrift-familie);
+  border-radius: var(--radius);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero__button:hover {
+  background-color: #a0001f;
+}
+
+
+/* ============================================
+   EINLEITUNG
+   ============================================ */
+
+.einleitung {
+  background-color: var(--bg-ausgangslage);
+  padding: var(--abstand-gross) var(--abstand-mittel);
+}
+
+.einleitung__label {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-winzig);
+  color: var(--farbe-grau-subtle);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 0;
+  margin-bottom: var(--abstand-winzig);
+}
+
+.einleitung__titel {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-mittel);
+  color: var(--farbe-schwarz);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--abstand-klein);
+  line-height: 1.3;
+}
+
+.einleitung__text {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  color: var(--farbe-grau-body);
+  line-height: 1.6;
+  margin-top: 0;
+}
+
+
+/* ============================================
+   TEAM
+   ============================================ */
+
+.team {
+  background-color: var(--bg-ziel);
+  padding: var(--abstand-gross) var(--abstand-mittel);
+}
+
+.team__titel {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-mittel);
+  color: var(--farbe-schwarz);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--abstand-klein);
+  line-height: 1.3;
+}
+
+.team__untertitel {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  color: var(--farbe-schwarz);
+  font-weight: 700;
+  margin-bottom: var(--abstand-winzig);
+}
+
+.team__text {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  color: var(--farbe-grau-body);
+  line-height: 1.6;
+  margin-top: 0;
+}
+
+.team__liste {
+  padding-left: var(--abstand-mittel);
+  margin-top: 0;
+}
+
+.team__liste-punkt {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  color: var(--farbe-grau-body);
+  line-height: 1.8;
+}
+
+
+/* ============================================
+   LEISTUNG
+   ============================================ */
+
+.leistung {
+  background-color: var(--bg-ausgangslage);
+  padding: var(--abstand-gross) var(--abstand-mittel);
+}
+
+.leistung__titel {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-mittel);
+  color: var(--farbe-schwarz);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--abstand-klein);
+  line-height: 1.3;
+}
+
+.leistung__untertitel {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  color: var(--farbe-schwarz);
+  font-weight: 700;
+  margin-bottom: var(--abstand-winzig);
+}
+
+.leistung__text {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  color: var(--farbe-grau-body);
+  line-height: 1.6;
+  margin-top: 0;
+}
+
+.leistung__liste {
+  padding-left: var(--abstand-mittel);
+  margin-top: 0;
+}
+
+.leistung__liste-punkt {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  color: var(--farbe-grau-body);
+  line-height: 1.8;
+}
+
+
+/* ============================================
+   NEWSLETTER (ROTER BEREICH)
+   ============================================ */
+
+.newsletter {
+  background-color: var(--bg-newsletter);
+  padding: var(--abstand-gross) var(--abstand-mittel);
+}
+
+.newsletter__titel {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-mittel);
+  color: var(--farbe-weiss);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--abstand-klein);
+}
+
+.newsletter__untertitel {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  color: var(--farbe-weiss);
+  font-weight: 700;
+  margin-bottom: var(--abstand-winzig);
+}
+
+.newsletter__text {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  color: var(--farbe-weiss);
+  line-height: 1.6;
+  margin-top: 0;
+}
+
+.newsletter__link {
+  color: var(--farbe-weiss);
+  text-decoration: none;
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  margin-right: var(--abstand-klein);
+  font-weight: 700;
+}
+
+.newsletter__link:hover {
+  text-decoration: underline;
+}
+
+.newsletter__button {
+  display: inline-block;
+  background-color: var(--farbe-weiss);
+  color: var(--farbe-rot);
+  padding: var(--abstand-winzig) var(--abstand-klein);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: var(--schrift-winzig);
+  font-family: var(--schrift-familie);
+  border-radius: var(--radius);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--abstand-mittel);
+}
+
+.newsletter__formular {
+  display: flex;
+  flex-direction: column;
+  gap: var(--abstand-winzig);
+  max-width: 400px;
+}
+
+.newsletter__formular-label {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-winzig);
+  color: var(--farbe-weiss);
+}
+
+.newsletter__formular-input {
+  padding: var(--abstand-winzig) var(--abstand-klein);
+  border-radius: var(--radius);
+  border: 1px solid var(--farbe-grau-border);
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+}
+
+.newsletter__formular-button {
+  background-color: var(--farbe-schwarz);
+  color: var(--farbe-weiss);
+  padding: var(--abstand-winzig) var(--abstand-klein);
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.newsletter__formular-button:hover {
+  background-color: #333333;
+}
+
+
+/* ============================================
+   ATHLETEN
+   ============================================ */
+
+.athleten {
+  background-color: var(--bg-athleten);
+  padding: var(--abstand-gross) var(--abstand-mittel);
+}
+
+.athleten__titel {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-mittel);
+  color: var(--farbe-schwarz);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--abstand-klein);
+  line-height: 1.3;
+}
+
+.athleten__untertitel {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  color: var(--farbe-schwarz);
+  font-weight: 700;
+  margin-bottom: var(--abstand-winzig);
+}
+
+.athleten__text {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  color: var(--farbe-grau-body);
+  line-height: 1.6;
+  margin-top: 0;
+}
+
+
+/* ============================================
+   SCHWEIZ
+   ============================================ */
+
+.schweiz {
+  background-color: var(--bg-schweiz);
+  padding: var(--abstand-gross) var(--abstand-mittel);
+}
+
+.schweiz__titel {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-mittel);
+  color: var(--farbe-schwarz);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--abstand-klein);
+  line-height: 1.3;
+}
+
+.schweiz__text {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  color: var(--farbe-grau-body);
+  line-height: 1.6;
+  margin-top: 0;
+}
+
+
+/* ============================================
+   PARTNER
+   ============================================ */
+
+.partner {
+  background-color: var(--bg-partners);
+  padding: var(--abstand-gross) var(--abstand-mittel);
+}
+
+.partner__titel {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-mittel);
+  color: var(--farbe-weiss);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--abstand-mittel);
+}
+
+.partner__logo {
+  height: 50px;
+  margin-right: var(--abstand-mittel);
+  background-color: var(--farbe-weiss);
+  padding: var(--abstand-winzig);
+  border-radius: var(--radius);
+}
+
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+  background-color: var(--bg-footer);
+  padding: var(--abstand-gross) var(--abstand-mittel);
+}
+
+.footer__adresse {
+  font-style: normal;
+  margin-bottom: var(--abstand-mittel);
+}
+
+.footer__text {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-winzig);
+  color: var(--farbe-grau-subtle);
+  margin: 0 0 var(--abstand-winzig) 0;
+}
+
+.footer__link {
+  display: block;
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-winzig);
+  color: var(--farbe-grau-subtle);
+  text-decoration: none;
+  margin-bottom: var(--abstand-winzig);
+}
+
+.footer__link:hover {
+  color: var(--farbe-weiss);
+}
+
+.footer__nav {
+  margin-bottom: var(--abstand-mittel);
+}
+
+.footer__nav-link {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-winzig);
+  color: var(--farbe-grau-subtle);
+  text-decoration: none;
+  margin-right: var(--abstand-klein);
+}
+
+.footer__nav-link:hover {
+  color: var(--farbe-weiss);
+}
+
+.footer__copyright {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-winzig);
+  color: var(--farbe-grau-subtle);
+  margin: 0;
+}
