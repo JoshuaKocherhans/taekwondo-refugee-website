@@ -1,62 +1,63 @@
 /* ============================================
    CSS VARIABLEN – SWISS TAEKWONDO UHP TEAM
-   Basierend auf dem offiziellen Style Guide
+   Alle Werte kommen aus dem offiziellen Style Guide.
+   Variablen werden überall mit var(--name) verwendet.
    ============================================ */
 
 :root {
 
-  /* ---------- FARBEN: Primär & Akzent ---------- */
-  --farbe-rot: #C1002A;
-  --farbe-blau: #6374A2;
+  /* FARBEN */
+  --farbe-rot:          #C1002A;  /* Signal-Rot: Buttons, Tags, rote Sections   */
+  --farbe-blau:         #6374A2;  /* Brand-Blau: Logo, Akzente                  */
+  --farbe-schwarz:      #000000;  /* Schwarz: Footer, dunkle Bereiche           */
+  --farbe-grau-body:    #646464;  /* Normaler Fliesstext                        */
+  --farbe-grau-subtle:  #A0A0A5;  /* Labels, Captions, dekorativ                */
+  --farbe-grau-border:  #CCCCCC;  /* Rahmen bei Formularen                      */
+  --farbe-bg-hell:      #F0F0F7;  /* Hellgrauer Hintergrund                     */
+  --farbe-placeholder:  #D9D9D9;  /* Bild-Platzhalter                           */
+  --farbe-weiss:        #FFFFFF;  /* Weiss für helle Sections                   */
 
-  /* ---------- FARBEN: Dunkel & Neutral ---------- */
-  --farbe-schwarz: #000000;
-  --farbe-grau-body: #646464;
-  --farbe-grau-subtle: #A0A0A5;
-  --farbe-grau-border: #CCCCCC;
+  /* SECTION HINTERGRÜNDE – laut Style Guide */
+  --bg-navigation:  #FFFFFF;  /* Header                      */
+  --bg-hero:        #000000;  /* Hero Bild                   */
+  --bg-einleitung:  #FFFFFF;  /* Starke Athlet:innen         */
+  --bg-team:        #F0F0F7;  /* Ein Team                    */
+  --bg-ethik:       #FFFFFF;  /* Ethik / Leistung            */
+  --bg-unterschied: #C1002A;  /* Sei der Unterschied – Rot   */
+  --bg-athleten:    #F0F0F7;  /* Benefits Athlet:innen       */
+  --bg-schweiz:     #FFFFFF;  /* Benefits Schweiz            */
+  --bg-partner:     #F0F0F7;  /* Partner & Träger            */
+  --bg-footer:      #000000;  /* Footer – Schwarz            */
 
-  /* ---------- FARBEN: Hell & Flächen ---------- */
-  --farbe-bg-section: #F0F0F7;
-  --farbe-placeholder: #D9D9D9;
-  --farbe-weiss: #FFFFFF;
-
-  /* ---------- SECTION HINTERGRUNDFARBEN ---------- */
-  --bg-navigation:   #FFFFFF;
-  --bg-hero:         #000000;
-  --bg-ausgangslage: #F0F0F7;
-  --bg-ziel:         #FFFFFF;
-  --bg-ethik:        #F0F0F7;
-  --bg-bild:         #D9D9D9;
-  --bg-newsletter:   #C1002A;
-  --bg-athleten:     #F0F0F7;
-  --bg-schweiz:      #FFFFFF;
-  --bg-partners:     #C1002A;
-  --bg-footer:       #000000;
-
-  /* ---------- SCHRIFT ---------- */
+  /* SCHRIFT – Inter laut Style Guide */
   --schrift-familie: 'Inter', sans-serif;
-  --schrift-gross:   28px;
-  --schrift-mittel:  20px;
-  --schrift-klein:   16px;
-  --schrift-winzig:  14px;
+  --schrift-h1:      36px;   /* Hero Haupttitel              */
+  --schrift-h2:      24px;   /* Abschnittstitel              */
+  --schrift-h3:      18px;   /* Unterabschnittstitel         */
+  --schrift-body:    16px;   /* Normaler Fliesstext          */
+  --schrift-klein:   14px;   /* Labels, Buttons              */
+  --schrift-winzig:  12px;   /* Footer, Copyright            */
 
-  /* ---------- ABSTÄNDE ---------- */
-  --abstand-gross:   60px;
-  --abstand-mittel:  30px;
-  --abstand-klein:   15px;
-  --abstand-winzig:  8px;
+  /* ABSTÄNDE */
+  --abstand-xl:   48px;   /* Innenabstand Sections (oben/unten)  */
+  --abstand-l:    32px;   /* Zwischen grossen Elementen          */
+  --abstand-m:    20px;   /* Seitenabstand, mittlere Abstände    */
+  --abstand-s:    12px;   /* Zwischen kleinen Elementen          */
+  --abstand-xs:    8px;   /* Kleine Lücken                       */
 
-  /* ---------- SONSTIGES ---------- */
-  --radius: 4px;
+  /* SONSTIGES */
+  --radius:      4px;    /* Abgerundete Ecken für Buttons/Karten */
+  --max-breite:  480px;  /* Maximale Breite für Mobile           */
 }
 
 
 /* ============================================
-   RESET
+   RESET – Browser-Standardstyles bereinigen
    ============================================ */
 
 * {
   box-sizing: border-box;
+  /* Padding und Border werden INNERHALB der Breite berechnet */
 }
 
 body {
@@ -64,32 +65,86 @@ body {
   padding: 0;
   font-family: var(--schrift-familie);
   color: var(--farbe-grau-body);
+  font-size: var(--schrift-body);
+  /* Seite auf max. 480px begrenzen und zentrieren */
+  max-width: var(--max-breite);
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--farbe-weiss);
 }
 
 
 /* ============================================
-   HEADER
+   ROTER BALKEN GANZ OBEN
+   ============================================ */
+
+.top-bar {
+  height: 4px;
+  background-color: var(--farbe-rot);
+  width: 100%;
+}
+
+
+/* ============================================
+   WIEDERVERWENDBARES SECTION-LABEL
+   Kleiner Text über Abschnittstiteln z.B. "AUSGABE 001"
+   ============================================ */
+
+.section-label {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-winzig);
+  font-weight: 700;
+  color: var(--farbe-rot);
+  /* Roter Label-Text */
+  text-transform: uppercase;
+  /* Grossbuchstaben */
+  letter-spacing: 2px;
+  /* Buchstabenabstand für Label-Stil */
+  margin: 0 0 var(--abstand-s) 0;
+}
+
+.section-label--weiss {
+  /* Variante für rote Hintergründe – weisse Schrift */
+  color: rgba(255, 255, 255, 0.75);
+}
+
+
+/* ============================================
+   HEADER / NAVIGATION
    ============================================ */
 
 .header {
   background-color: var(--bg-navigation);
-  padding: var(--abstand-klein) var(--abstand-mittel);
-  box-shadow: 0px 2px 5px var(--farbe-grau-border);
+  padding: var(--abstand-s) var(--abstand-m);
+  /* Flexbox: Logo links, Nav rechts, vertikal zentriert */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* Leichter Schatten unter dem Header */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .header__logo {
-  width: 80px;
+  width: 70px;
+}
+
+.header__nav {
+  display: flex;
+  gap: var(--abstand-xs);
 }
 
 .header__nav-link {
-  color: var(--farbe-schwarz);
-  text-decoration: none;
-  margin-left: var(--abstand-klein);
-  font-size: var(--schrift-winzig);
   font-family: var(--schrift-familie);
+  font-size: var(--schrift-winzig);
+  color: var(--farbe-grau-body);
+  text-decoration: none;
+  padding: var(--abstand-xs);
+}
+
+.header__nav-link--aktiv {
+  /* Aktive Sprache: schwarz und fett */
+  color: var(--farbe-schwarz);
+  font-weight: 700;
 }
 
 .header__nav-link:hover {
@@ -98,12 +153,14 @@ body {
 
 
 /* ============================================
-   HERO
+   HERO – Text ÜBER dem Bild
    ============================================ */
 
 .hero {
   position: relative;
-  height: 500px;
+  /* position: relative – Anker für den absolut positionierten Inhalt */
+  height: 420px;
+  overflow: hidden;
   background-color: var(--bg-hero);
 }
 
@@ -111,46 +168,51 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.7;
+  /* object-fit: cover – Bild füllt den Bereich ohne Verzerrung */
+  object-position: center top;
+  /* Leicht abdunkeln damit Text besser lesbar ist */
+  opacity: 0.6;
 }
 
 .hero__inhalt {
+  /* position: absolute – liegt ÜBER dem Bild */
   position: absolute;
-  bottom: 40px;
-  left: 20px;
+  bottom: var(--abstand-l);
+  left: var(--abstand-m);
+  right: var(--abstand-m);
 }
 
 .hero__label {
-  color: var(--farbe-weiss);
-  font-size: var(--schrift-winzig);
   font-family: var(--schrift-familie);
-  margin-bottom: var(--abstand-winzig);
-  margin-top: 0;
+  font-size: var(--schrift-winzig);
+  color: rgba(255, 255, 255, 0.75);
   text-transform: uppercase;
   letter-spacing: 1.5px;
+  margin: 0 0 var(--abstand-xs) 0;
 }
 
 .hero__titel {
-  color: var(--farbe-weiss);
-  font-size: var(--schrift-gross);
   font-family: var(--schrift-familie);
+  font-size: var(--schrift-h1);
   font-weight: 700;
-  margin-top: 0;
-  margin-bottom: var(--abstand-klein);
-  line-height: 1.2;
+  color: var(--farbe-weiss);
+  margin: 0 0 var(--abstand-m) 0;
+  line-height: 1.15;
 }
 
 .hero__button {
+  /* Roter CTA-Button */
+  display: inline-block;
   background-color: var(--farbe-rot);
   color: var(--farbe-weiss);
-  padding: var(--abstand-winzig) var(--abstand-klein);
-  text-decoration: none;
-  font-weight: 700;
-  font-size: var(--schrift-winzig);
   font-family: var(--schrift-familie);
-  border-radius: var(--radius);
+  font-size: var(--schrift-klein);
+  font-weight: 700;
+  text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 1px;
+  padding: var(--abstand-s) var(--abstand-m);
+  border-radius: var(--radius);
 }
 
 .hero__button:hover {
@@ -159,366 +221,513 @@ body {
 
 
 /* ============================================
-   EINLEITUNG
+   EINLEITUNG – AUSGABE 001 / STARKE ATHLET:INNEN
+   Hintergrund: Weiss
    ============================================ */
 
 .einleitung {
-  background-color: var(--bg-ausgangslage);
-  padding: var(--abstand-gross) var(--abstand-mittel);
-}
-
-.einleitung__label {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-winzig);
-  color: var(--farbe-grau-subtle);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-top: 0;
-  margin-bottom: var(--abstand-winzig);
+  background-color: var(--bg-einleitung);
+  padding: var(--abstand-xl) var(--abstand-m);
 }
 
 .einleitung__titel {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-mittel);
-  color: var(--farbe-schwarz);
+  font-size: var(--schrift-h2);
   font-weight: 700;
-  margin-top: 0;
-  margin-bottom: var(--abstand-klein);
+  color: var(--farbe-schwarz);
+  /* Roter linker Akzentbalken */
+  border-left: 4px solid var(--farbe-rot);
+  padding-left: var(--abstand-s);
+  margin: 0 0 var(--abstand-m) 0;
   line-height: 1.3;
 }
 
 .einleitung__text {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
+  font-size: var(--schrift-body);
   color: var(--farbe-grau-body);
-  line-height: 1.6;
-  margin-top: 0;
+  line-height: 1.7;
+  margin: 0 0 var(--abstand-m) 0;
 }
 
 
 /* ============================================
-   TEAM
+   TEAM – EIN TEAM. OHNE WENN UND ABER.
+   Hintergrund: Hellgrau
    ============================================ */
 
 .team {
-  background-color: var(--bg-ziel);
-  padding: var(--abstand-gross) var(--abstand-mittel);
+  background-color: var(--bg-team);
+  padding: var(--abstand-xl) var(--abstand-m);
 }
 
 .team__titel {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-mittel);
-  color: var(--farbe-schwarz);
+  font-size: var(--schrift-h2);
   font-weight: 700;
-  margin-top: 0;
-  margin-bottom: var(--abstand-klein);
+  color: var(--farbe-schwarz);
+  border-left: 4px solid var(--farbe-rot);
+  padding-left: var(--abstand-s);
+  margin: 0 0 var(--abstand-m) 0;
   line-height: 1.3;
 }
 
 .team__untertitel {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
-  color: var(--farbe-schwarz);
+  font-size: var(--schrift-h3);
   font-weight: 700;
-  margin-bottom: var(--abstand-winzig);
+  color: var(--farbe-schwarz);
+  margin: var(--abstand-l) 0 var(--abstand-s) 0;
 }
 
 .team__text {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
+  font-size: var(--schrift-body);
   color: var(--farbe-grau-body);
-  line-height: 1.6;
-  margin-top: 0;
+  line-height: 1.7;
+  margin: 0 0 var(--abstand-m) 0;
 }
 
 .team__liste {
-  padding-left: var(--abstand-mittel);
-  margin-top: 0;
+  padding-left: var(--abstand-l);
+  margin: 0 0 var(--abstand-m) 0;
 }
 
 .team__liste-punkt {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
+  font-size: var(--schrift-body);
   color: var(--farbe-grau-body);
   line-height: 1.8;
+  margin-bottom: var(--abstand-xs);
+}
+
+.team__liste-punkt::marker {
+  /* ::marker – Style für den roten Aufzählungspunkt */
+  color: var(--farbe-rot);
 }
 
 
 /* ============================================
-   LEISTUNG
+   ETHIK – LEISTUNG UND VERANTWORTUNG
+   Hintergrund: Weiss
    ============================================ */
 
-.leistung {
-  background-color: var(--bg-ausgangslage);
-  padding: var(--abstand-gross) var(--abstand-mittel);
+.ethik {
+  background-color: var(--bg-ethik);
+  padding: var(--abstand-xl) var(--abstand-m);
 }
 
-.leistung__titel {
+.ethik__titel {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-mittel);
-  color: var(--farbe-schwarz);
+  font-size: var(--schrift-h2);
   font-weight: 700;
-  margin-top: 0;
-  margin-bottom: var(--abstand-klein);
+  color: var(--farbe-schwarz);
+  border-left: 4px solid var(--farbe-rot);
+  padding-left: var(--abstand-s);
+  margin: 0 0 var(--abstand-m) 0;
   line-height: 1.3;
 }
 
-.leistung__untertitel {
+.ethik__untertitel {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
-  color: var(--farbe-schwarz);
+  font-size: var(--schrift-h3);
   font-weight: 700;
-  margin-bottom: var(--abstand-winzig);
+  color: var(--farbe-schwarz);
+  margin: var(--abstand-l) 0 var(--abstand-s) 0;
 }
 
-.leistung__text {
+.ethik__text {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
+  font-size: var(--schrift-body);
   color: var(--farbe-grau-body);
-  line-height: 1.6;
-  margin-top: 0;
+  line-height: 1.7;
+  margin: 0 0 var(--abstand-m) 0;
 }
 
-.leistung__liste {
-  padding-left: var(--abstand-mittel);
-  margin-top: 0;
+.ethik__liste {
+  padding-left: var(--abstand-l);
+  margin: 0 0 var(--abstand-m) 0;
 }
 
-.leistung__liste-punkt {
+.ethik__liste-punkt {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
+  font-size: var(--schrift-body);
   color: var(--farbe-grau-body);
   line-height: 1.8;
+  margin-bottom: var(--abstand-xs);
+}
+
+.ethik__liste-punkt::marker {
+  color: var(--farbe-rot);
 }
 
 
 /* ============================================
-   NEWSLETTER (ROTER BEREICH)
+   UNTERSCHIED – SEI DER UNTERSCHIED
+   Hintergrund: Rot
    ============================================ */
 
-.newsletter {
-  background-color: var(--bg-newsletter);
-  padding: var(--abstand-gross) var(--abstand-mittel);
+.unterschied {
+  background-color: var(--bg-unterschied);
+  padding: var(--abstand-xl) var(--abstand-m);
 }
 
-.newsletter__titel {
+.unterschied__titel {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-mittel);
-  color: var(--farbe-weiss);
+  font-size: var(--schrift-h2);
   font-weight: 700;
-  margin-top: 0;
-  margin-bottom: var(--abstand-klein);
+  color: var(--farbe-weiss);
+  margin: 0 0 var(--abstand-m) 0;
+  line-height: 1.3;
 }
 
-.newsletter__untertitel {
+.unterschied__untertitel {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
-  color: var(--farbe-weiss);
+  font-size: var(--schrift-h3);
   font-weight: 700;
-  margin-bottom: var(--abstand-winzig);
+  color: var(--farbe-weiss);
+  margin: var(--abstand-l) 0 var(--abstand-s) 0;
 }
 
-.newsletter__text {
+.unterschied__text {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
+  font-size: var(--schrift-body);
   color: var(--farbe-weiss);
-  line-height: 1.6;
-  margin-top: 0;
+  line-height: 1.7;
+  margin: 0 0 var(--abstand-m) 0;
+  opacity: 0.9;
 }
 
-.newsletter__link {
+.unterschied__social {
+  display: flex;
+  gap: var(--abstand-m);
+  margin-bottom: var(--abstand-l);
+}
+
+.unterschied__social-link {
+  display: flex;
+  align-items: center;
+  gap: var(--abstand-xs);
   color: var(--farbe-weiss);
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-body);
+  font-weight: 700;
   text-decoration: none;
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
-  margin-right: var(--abstand-klein);
-  font-weight: 700;
 }
 
-.newsletter__link:hover {
-  text-decoration: underline;
+.unterschied__social-link:hover {
+  opacity: 0.8;
 }
 
-.newsletter__button {
-  display: inline-block;
+.unterschied__social-icon {
+  font-size: 20px;
+}
+
+.unterschied__button {
+  display: block;
+  /* display: block – Button nimmt volle Breite ein */
   background-color: var(--farbe-weiss);
   color: var(--farbe-rot);
-  padding: var(--abstand-winzig) var(--abstand-klein);
-  text-decoration: none;
-  font-weight: 700;
-  font-size: var(--schrift-winzig);
   font-family: var(--schrift-familie);
-  border-radius: var(--radius);
+  font-size: var(--schrift-klein);
+  font-weight: 700;
+  text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: var(--abstand-mittel);
+  padding: var(--abstand-s) var(--abstand-m);
+  border-radius: var(--radius);
+  margin-bottom: var(--abstand-l);
+  text-align: center;
 }
 
-.newsletter__formular {
+.unterschied__button:hover {
+  background-color: #f0f0f0;
+}
+
+.unterschied__formular {
   display: flex;
   flex-direction: column;
-  gap: var(--abstand-winzig);
-  max-width: 400px;
+  /* flex-direction: column – Elemente untereinander */
+  gap: var(--abstand-s);
 }
 
-.newsletter__formular-label {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-winzig);
-  color: var(--farbe-weiss);
-}
-
-.newsletter__formular-input {
-  padding: var(--abstand-winzig) var(--abstand-klein);
-  border-radius: var(--radius);
-  border: 1px solid var(--farbe-grau-border);
+.unterschied__formular-label {
   font-family: var(--schrift-familie);
   font-size: var(--schrift-klein);
+  color: var(--farbe-weiss);
+  font-weight: 600;
 }
 
-.newsletter__formular-button {
+.unterschied__formular-input {
+  width: 100%;
+  padding: var(--abstand-s) var(--abstand-m);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--farbe-weiss);
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-body);
+}
+
+.unterschied__formular-input::placeholder {
+  /* ::placeholder – Stil für den grauen Hinweistext im Feld */
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.unterschied__formular-button {
+  width: 100%;
   background-color: var(--farbe-schwarz);
   color: var(--farbe-weiss);
-  padding: var(--abstand-winzig) var(--abstand-klein);
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-body);
+  font-weight: 700;
+  padding: var(--abstand-s) var(--abstand-m);
   border: none;
   border-radius: var(--radius);
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
-  font-weight: 700;
   cursor: pointer;
+  /* cursor: pointer – Mauszeiger wird zur Hand */
 }
 
-.newsletter__formular-button:hover {
-  background-color: #333333;
+.unterschied__formular-button:hover {
+  background-color: #222222;
 }
 
 
 /* ============================================
-   ATHLETEN
+   ATHLETEN – BENEFITS FÜR ATHLET:INNEN
+   Hintergrund: Hellgrau
    ============================================ */
 
 .athleten {
   background-color: var(--bg-athleten);
-  padding: var(--abstand-gross) var(--abstand-mittel);
+  padding: var(--abstand-xl) var(--abstand-m);
 }
 
 .athleten__titel {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-mittel);
-  color: var(--farbe-schwarz);
+  font-size: var(--schrift-h2);
   font-weight: 700;
-  margin-top: 0;
-  margin-bottom: var(--abstand-klein);
+  color: var(--farbe-schwarz);
+  border-left: 4px solid var(--farbe-rot);
+  padding-left: var(--abstand-s);
+  margin: 0 0 var(--abstand-m) 0;
   line-height: 1.3;
 }
 
 .athleten__untertitel {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
-  color: var(--farbe-schwarz);
+  font-size: var(--schrift-h3);
   font-weight: 700;
-  margin-bottom: var(--abstand-winzig);
+  color: var(--farbe-schwarz);
+  margin: var(--abstand-l) 0 var(--abstand-s) 0;
 }
 
 .athleten__text {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
+  font-size: var(--schrift-body);
   color: var(--farbe-grau-body);
-  line-height: 1.6;
-  margin-top: 0;
+  line-height: 1.7;
+  margin: 0 0 var(--abstand-m) 0;
 }
 
 
 /* ============================================
-   SCHWEIZ
+   SCHWEIZ – BENEFITS FÜR DIE SCHWEIZ
+   Hintergrund: Weiss
    ============================================ */
 
 .schweiz {
   background-color: var(--bg-schweiz);
-  padding: var(--abstand-gross) var(--abstand-mittel);
+  padding: var(--abstand-xl) var(--abstand-m);
 }
 
 .schweiz__titel {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-mittel);
-  color: var(--farbe-schwarz);
+  font-size: var(--schrift-h2);
   font-weight: 700;
-  margin-top: 0;
-  margin-bottom: var(--abstand-klein);
+  color: var(--farbe-schwarz);
+  border-left: 4px solid var(--farbe-rot);
+  padding-left: var(--abstand-s);
+  margin: 0 0 var(--abstand-m) 0;
   line-height: 1.3;
 }
 
 .schweiz__text {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
+  font-size: var(--schrift-body);
   color: var(--farbe-grau-body);
-  line-height: 1.6;
-  margin-top: 0;
+  line-height: 1.7;
+  margin: 0;
 }
 
 
 /* ============================================
-   PARTNER
+   PARTNER – UNSERE PARTNER & TRÄGER
+   Hintergrund: Hellgrau
    ============================================ */
 
 .partner {
-  background-color: var(--bg-partners);
-  padding: var(--abstand-gross) var(--abstand-mittel);
+  background-color: var(--bg-partner);
+  padding: var(--abstand-xl) var(--abstand-m);
 }
 
-.partner__titel {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-mittel);
-  color: var(--farbe-weiss);
-  font-weight: 700;
-  margin-top: 0;
-  margin-bottom: var(--abstand-mittel);
+.partner__karten {
+  display: flex;
+  flex-direction: column;
+  /* Karten untereinander auf Mobile */
+  gap: var(--abstand-m);
 }
 
-.partner__logo {
-  height: 50px;
-  margin-right: var(--abstand-mittel);
+.partner__karte {
   background-color: var(--farbe-weiss);
-  padding: var(--abstand-winzig);
   border-radius: var(--radius);
+  padding: var(--abstand-m);
+  display: flex;
+  align-items: center;
+  gap: var(--abstand-m);
+  /* Leichter Schatten für Karten-Effekt */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.partner__karte-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  /* object-fit: contain – Logo wird nicht abgeschnitten */
+  flex-shrink: 0;
+  /* flex-shrink: 0 – Logo behält seine Grösse */
+}
+
+.partner__karte-name {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  font-weight: 600;
+  color: var(--farbe-schwarz);
+  margin: 0;
 }
 
 
 /* ============================================
    FOOTER
+   Hintergrund: Schwarz
    ============================================ */
 
 .footer {
   background-color: var(--bg-footer);
-  padding: var(--abstand-gross) var(--abstand-mittel);
+  padding: var(--abstand-xl) var(--abstand-m);
+}
+
+.footer__logo {
+  width: 80px;
+  margin-bottom: var(--abstand-l);
+  /* filter: macht das Logo weiss auf schwarzem Hintergrund */
+  filter: brightness(0) invert(1);
 }
 
 .footer__adresse {
   font-style: normal;
-  margin-bottom: var(--abstand-mittel);
+  /* font-style: normal – <address> hat standardmässig kursive Schrift */
+  margin-bottom: var(--abstand-l);
 }
 
 .footer__text {
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-winzig);
+  font-size: var(--schrift-klein);
   color: var(--farbe-grau-subtle);
-  margin: 0 0 var(--abstand-winzig) 0;
+  margin: 0 0 var(--abstand-xs) 0;
+  line-height: 1.6;
 }
 
 .footer__link {
   display: block;
   font-family: var(--schrift-familie);
-  font-size: var(--schrift-winzig);
+  font-size: var(--schrift-klein);
   color: var(--farbe-grau-subtle);
   text-decoration: none;
-  margin-bottom: var(--abstand-winzig);
+  margin-bottom: var(--abstand-xs);
 }
 
 .footer__link:hover {
   color: var(--farbe-weiss);
 }
 
+/* Kontaktformular im Footer */
+.footer__formular {
+  display: flex;
+  flex-direction: column;
+  gap: var(--abstand-s);
+  margin-bottom: var(--abstand-l);
+}
+
+.footer__formular-label {
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-klein);
+  color: var(--farbe-grau-subtle);
+  font-weight: 600;
+}
+
+.footer__formular-input {
+  width: 100%;
+  padding: var(--abstand-s) var(--abstand-m);
+  border-radius: var(--radius);
+  border: 1px solid #333333;
+  background-color: #111111;
+  color: var(--farbe-weiss);
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-body);
+}
+
+.footer__formular-input::placeholder {
+  color: #555555;
+}
+
+.footer__formular-textarea {
+  width: 100%;
+  padding: var(--abstand-s) var(--abstand-m);
+  border-radius: var(--radius);
+  border: 1px solid #333333;
+  background-color: #111111;
+  color: var(--farbe-weiss);
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-body);
+  /* Höhe des Textarea */
+  height: 100px;
+  resize: vertical;
+  /* resize: vertical – Benutzer kann nur vertikal vergrössern */
+}
+
+.footer__formular-textarea::placeholder {
+  color: #555555;
+}
+
+.footer__formular-button {
+  width: 100%;
+  background-color: var(--farbe-rot);
+  color: var(--farbe-weiss);
+  font-family: var(--schrift-familie);
+  font-size: var(--schrift-body);
+  font-weight: 700;
+  padding: var(--abstand-s) var(--abstand-m);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer__formular-button:hover {
+  background-color: #a0001f;
+}
+
+/* Footer Navigation */
 .footer__nav {
-  margin-bottom: var(--abstand-mittel);
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-wrap: wrap – Links brechen in nächste Zeile wenn nötig */
+  gap: var(--abstand-s);
+  margin-bottom: var(--abstand-l);
+  border-top: 1px solid #333333;
+  padding-top: var(--abstand-m);
 }
 
 .footer__nav-link {
@@ -526,7 +735,6 @@ body {
   font-size: var(--schrift-winzig);
   color: var(--farbe-grau-subtle);
   text-decoration: none;
-  margin-right: var(--abstand-klein);
 }
 
 .footer__nav-link:hover {

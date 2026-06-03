@@ -1,44 +1,31 @@
 <!DOCTYPE html>
-<!-- 
+<!--
   DOCTYPE: Sagt dem Browser, dass dies ein HTML5-Dokument ist.
-  Jede HTML-Seite beginnt damit.
 -->
-
 <html lang="de">
-<!-- 
-  <html>: Das Wurzelelement – alles andere befindet sich darin.
-  lang="de": Gibt an, dass die Seite auf Deutsch ist (wichtig für Barrierefreiheit).
--->
 
 <head>
-  <!-- 
-    <head>: Enthält Metainformationen über die Seite.
-    Diese Informationen sind für den Benutzer unsichtbar,
-    aber wichtig für Browser und Suchmaschinen.
-  -->
-
   <meta charset="UTF-8" />
-  <!-- Zeichenkodierung: Ermöglicht Umlaute wie ä, ö, ü -->
+  <!-- Ermöglicht Umlaute wie ä, ö, ü -->
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- 
-    Viewport: Sorgt dafür, dass die Seite auf Mobilgeräten
-    korrekt skaliert wird (Responsive Design).
-  -->
+  <!-- Sorgt für korrekte Darstellung auf Mobilgeräten -->
 
-  <title>Swiss Taekwondo – UHP Team</title>
-  <!-- Titel, der im Browser-Tab angezeigt wird -->
+  <title>Swiss Taekwondo – United High Performance Team</title>
 
-  <!-- Verknüpfung zur externen CSS-Datei -->
+  <!-- Inter Schriftart von Google Fonts laden -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Verknüpfung zur CSS-Datei -->
   <link rel="stylesheet" href="style.css" />
 
 </head>
 
 <body>
-  <!-- 
-    <body>: Enthält den sichtbaren Inhalt der Webseite.
-    Alles, was der Benutzer sieht, steht hier drin.
-  -->
+
+  <!-- ==================== ROTER BALKEN GANZ OBEN ==================== -->
+  <!-- Dünner roter Streifen zuoberst auf der Seite -->
+  <div class="top-bar"></div>
 
 
   <!-- ==================== HEADER / NAVIGATION ==================== -->
@@ -49,7 +36,8 @@
 
     <!-- Sprachauswahl oben rechts -->
     <nav class="header__nav">
-      <a class="header__nav-link" href="#">Deutsch</a>
+      <!-- <nav>: Navigationsbereich -->
+      <a class="header__nav-link header__nav-link--aktiv" href="#">Deutsch</a>
       <a class="header__nav-link" href="#">Français</a>
       <a class="header__nav-link" href="#">Italiano</a>
     </nav>
@@ -57,188 +45,313 @@
   </header>
 
 
-  <!-- ==================== HERO-BEREICH (Grosses Bild oben) ==================== -->
+  <!-- ==================== HERO ==================== -->
+  <!-- Grosses Bild mit Text DARÜBER -->
   <section class="hero">
 
-    <!-- Hintergrundbild des Hero-Bereichs -->
-    <img class="hero__bild" src="images/hero-team.jpg" alt="UHP Team Foto" />
+    <!-- Hintergrundbild -->
+    <img class="hero__bild" src="images/hero-team.jpg" alt="United High Performance Team" />
 
-    <!-- Container: gruppiert den Text über dem Bild -->
+    <!-- Text liegt über dem Bild dank position:absolute -->
     <div class="hero__inhalt">
-
-      <p class="hero__label">Wettkampf & Co. Team Taekwondo</p>
+      <p class="hero__label">Optimiert zum Einsatz mit UHP und Co. Team, zu welchem</p>
       <h1 class="hero__titel">United High Performance Team</h1>
       <a class="hero__button" href="#">Team unterstützen</a>
+    </div>
+
+  </section>
+
+
+  <!-- ==================== AUSGABE 001 – STARKE ATHLET:INNEN ==================== -->
+  <!-- Hintergrund: Weiss -->
+  <section class="einleitung">
+
+    <!-- Kleines Label über dem Titel -->
+    <p class="section-label">AUSGABE 001</p>
+
+    <h2 class="einleitung__titel">Starke Athlet:innen. Gewachte Strukturen.</h2>
+
+    <p class="einleitung__text">
+      Swiss Taekwondo bietet national und international aktiven
+      Spitzensportler:innen einen gemeinsamen Rahmen. Wir arbeiten mit
+      Spitzensport-Institutionen wie der Militärischen Leistungssportschule
+      Tenero zusammen und bieten so den besten nationalen Talenten optimale
+      Unterstützungsinfrastruktur.
+    </p>
+
+    <p class="einleitung__text">
+      Im Rahmen der Zusammenarbeit können wir so die gesamte nationale
+      Kaderarbeit abzudecken und so fit für die nächste Olympiade zu sein.
+    </p>
+
+  </section>
+
+
+  <!-- ==================== EIN TEAM ==================== -->
+  <!-- Hintergrund: Hellgrau -->
+  <section class="team">
+
+    <h2 class="team__titel">Ein Team. Ohne Wenn und Aber.</h2>
+
+    <p class="team__text">
+      Das United High Performance Team schafft einen einzigartigen,
+      gemeinsamen Rahmen, angepassten den Rahmen für Athlet:innen und
+      professionelle Unterstützung auf höchstem nationalem Niveau. Im
+      Einzelnen schaffen für die optimale Unterstützung und Vorbereitung
+      im UHP Taekwondo.
+    </p>
+
+    <!-- Was das UHP Team anbietet -->
+    <h3 class="team__untertitel">Das UHP Team anbietet:</h3>
+
+    <ul class="team__liste">
+      <li class="team__liste-punkt">Zentralisiertes, strukturiertes Aufenthalts- und Trainingsumfeld mit hoher Qualität</li>
+      <li class="team__liste-punkt">Professionelles Leistungsmanagement von Athlet:innen</li>
+      <li class="team__liste-punkt">Zugang zu spezifischen professionellen Dienstleistungen</li>
+      <li class="team__liste-punkt">Individuelle Trainingssteuerung</li>
+      <li class="team__liste-punkt">Umfassende Administrationsunterstützung</li>
+    </ul>
+
+    <p class="team__text">
+      Das Ziel mit Separation, sozialer Stützung, Betreuungsinfrastruktur
+      und einem einheitlichen Rahmen für eine optimale Entwicklung aller
+      Spitzensportler:innen im Swiss UHP Team.
+    </p>
+
+  </section>
+
+
+  <!-- ==================== ETHIK – LEISTUNG UND VERANTWORTUNG ==================== -->
+  <!-- Hintergrund: Weiss -->
+  <section class="ethik">
+
+    <!-- Kleines Label über dem Titel -->
+    <p class="section-label">ETHIK</p>
+
+    <h2 class="ethik__titel">Leistung und Verantwortung. Kein Widerspruch.</h2>
+
+    <p class="ethik__text">
+      Swiss Taekwondo setzt sich aktiv und transparent für einen fairen Sport
+      ein. Wir fördern gezielt alle Athlet:innen und stehen für klare Grundsätze.
+    </p>
+
+    <!-- Grundsätze -->
+    <h3 class="ethik__untertitel">Die Grundsätze:</h3>
+
+    <ul class="ethik__liste">
+      <li class="ethik__liste-punkt">Faire und transparente Selektion</li>
+      <li class="ethik__liste-punkt">Systematisierung und bessere Integrität aller Prozesse</li>
+      <li class="ethik__liste-punkt">Professionelle und nachhaltige Führungsstruktur</li>
+      <li class="ethik__liste-punkt">Systematische Kommunikation und faire Entscheidungsprozesse</li>
+    </ul>
+
+    <p class="ethik__text">
+      Swiss Taekwondo ist und bleibt Mitglied der nationalen Dachorganisation
+      und unterstützt alle Vereine schweizweit mit professioneller Führung
+      und klarer Verantwortung.
+    </p>
+
+  </section>
+
+
+  <!-- ==================== SEI DER UNTERSCHIED (ROT) ==================== -->
+  <!-- Hintergrund: Rot -->
+  <section class="unterschied">
+
+    <!-- Kleines Label über dem Titel -->
+    <p class="section-label section-label--weiss">WAHRNEHMUNG & ENGAGEMENT</p>
+
+    <h2 class="unterschied__titel">Sei der Unterschied.</h2>
+
+    <p class="unterschied__text">
+      Das UHP Team fördert Gesundheit – getragen von Swiss Taekwondo und
+      dem UHP Team. Wir setzen uns für eine positive Wahrnehmung ein und
+      schaffen eine attraktive Sportkultur.
+    </p>
+
+    <!-- Social Media -->
+    <div class="unterschied__social">
+      <!-- Instagram und Facebook Icons/Links -->
+      <a class="unterschied__social-link" href="#">
+        <!-- Kreis als Platzhalter für Instagram-Icon -->
+        <span class="unterschied__social-icon">&#9679;</span>
+        Instagram
+      </a>
+      <a class="unterschied__social-link" href="#">
+        <span class="unterschied__social-icon">&#9679;</span>
+        Facebook
+      </a>
+    </div>
+
+    <!-- Partner & Sponsoren -->
+    <h3 class="unterschied__untertitel">Partner & Sponsoren werden</h3>
+    <p class="unterschied__text">
+      Als Partner unterstützen Sie gezielt Schweizer Spitzensportler:innen
+      und profitieren von nationaler Sichtbarkeit. Erfahren Sie mehr.
+    </p>
+    <a class="unterschied__button" href="#">Jetzt im UHP Team</a>
+
+    <!-- Newsletter -->
+    <h3 class="unterschied__untertitel">Newsletter abonnieren</h3>
+    <p class="unterschied__text">
+      Abonniere unseren Newsletter und bleib immer über das
+      Swiss UHP Team informiert.
+    </p>
+
+    <form class="unterschied__formular">
+      <!--
+        <form>: Formular für Benutzereingaben.
+        Enthält Label, Eingabefeld und Button.
+      -->
+      <label class="unterschied__formular-label" for="email">E-Mail-Adresse</label>
+      <input
+        class="unterschied__formular-input"
+        type="email"
+        id="email"
+        name="email"
+        placeholder="deine@email.ch"
+      />
+      <button class="unterschied__formular-button" type="submit">Anmelden</button>
+    </form>
+
+  </section>
+
+
+  <!-- ==================== BENEFITS FÜR ATHLET:INNEN ==================== -->
+  <!-- Hintergrund: Hellgrau -->
+  <section class="athleten">
+
+    <!-- Kleines Label über dem Titel -->
+    <p class="section-label">BENEFITS FÜR ATHLET:INNEN</p>
+
+    <h2 class="athleten__titel">Endlich ein fairer Rahmen.</h2>
+
+    <p class="athleten__text">
+      Das United High Performance System ermöglicht allen Athlet:innen
+      im Swiss UHP Team professionelle Betreuung, gezielte finanzielle
+      Unterstützung und optimale Rahmenbedingungen.
+    </p>
+
+    <!-- Geld -->
+    <h3 class="athleten__untertitel">Geld</h3>
+    <p class="athleten__text">
+      Wie viel Geld gibt es dort, wo du – wirklich, wirklich, wirklich –
+      zu bekommen bist?
+    </p>
+
+    <!-- Medien -->
+    <h3 class="athleten__untertitel">Medien</h3>
+    <p class="athleten__text">
+      Wie viel Geld gibt es dort, wo du – wirklich, wirklich, wirklich –
+      zu bekommen bist?
+    </p>
+
+  </section>
+
+
+  <!-- ==================== BENEFITS FÜR DIE SCHWEIZ ==================== -->
+  <!-- Hintergrund: Weiss -->
+  <section class="schweiz">
+
+    <!-- Kleines Label über dem Titel -->
+    <p class="section-label">BENEFITS FÜR DIE SCHWEIZ</p>
+
+    <h2 class="schweiz__titel">Stärker durch geteilte Erfahrung.</h2>
+
+    <p class="schweiz__text">
+      Das UHP Team gibt allen gezielt geförderten Schweizer
+      Spitzensportler:innen einen gemeinsamen Rahmen. Ergänzt wird dieser
+      durch die gesammelte Erfahrung von internationalen Spitzenteams wie
+      dem deutschen, niederländischen oder koreanischen Nationalteam –
+      für die Schweiz.
+    </p>
+
+  </section>
+
+
+  <!-- ==================== UNSERE PARTNER & TRÄGER ==================== -->
+  <!-- Hintergrund: Hellgrau -->
+  <section class="partner">
+
+    <!-- Kleines Label über dem Titel -->
+    <p class="section-label">UNSERE PARTNER & TRÄGER</p>
+
+    <!-- Partner-Karten nebeneinander -->
+    <div class="partner__karten">
+
+      <!-- Karte 1 -->
+      <div class="partner__karte">
+        <img class="partner__karte-logo" src="images/partner-sporthilfe.png" alt="Leistungszentrum Bern" />
+        <p class="partner__karte-name">Leistungszentrum Bern</p>
+      </div>
+
+      <!-- Karte 2 -->
+      <div class="partner__karte">
+        <img class="partner__karte-logo" src="images/partner-deutsche-taekwondo.png" alt="Deutschen Taekwondo" />
+        <p class="partner__karte-name">Deutschen Taekwondo</p>
+      </div>
+
+      <!-- Karte 3 -->
+      <div class="partner__karte">
+        <img class="partner__karte-logo" src="images/partner-swiss-taekwondo.png" alt="Swiss Taekwondo" />
+        <p class="partner__karte-name">Swiss Taekwondo</p>
+      </div>
 
     </div>
 
   </section>
 
 
-  <!-- ==================== EINLEITUNG / INTRO ==================== -->
-  <section class="einleitung">
-
-    <p class="einleitung__label">Swiss Taekwondo · UHP Team</p>
-    <h2 class="einleitung__titel">Starke Athlet:innen. Gewachte Struktur.</h2>
-    <p class="einleitung__text">
-      Swiss Taekwondo bietet Spitzensportler:innen einen gemeinsamen Rahmen.
-      Wir arbeiten mit Spitzensport-Institutionen wie der Militärischen
-      Leistungssportschule Tenero zusammen.
-    </p>
-
-  </section>
-
-
-  <!-- ==================== ABSCHNITT: EIN TEAM ==================== -->
-  <section class="team">
-
-    <h2 class="team__titel">Ein Team. Ohne Wenn und Aber.</h2>
-    <p class="team__text">
-      Das United High Performance Team schafft einen einzigartigen gemeinsamen
-      Rahmen für Athlet:innen für Strukturen und professionelle Unterstützung
-      auf höchstem Niveau.
-    </p>
-
-    <h3 class="team__untertitel">Das UHP Team anbietet:</h3>
-    <ul class="team__liste">
-      <li class="team__liste-punkt">Zentralisiertes, strukturiertes Aufenthalts- und Trainingsumfeld</li>
-      <li class="team__liste-punkt">Leistungsmanagement von Athlet:innen</li>
-      <li class="team__liste-punkt">Zugang zu spezifischen Dienstleistungen</li>
-      <li class="team__liste-punkt">Trainingssteuerung</li>
-      <li class="team__liste-punkt">Administrationsunterstützung</li>
-    </ul>
-
-    <p class="team__text">
-      Das Ziel: Separation, soziale Stützung, Betreuungsinfrastruktur
-      und ein einheitlicher Rahmen.
-    </p>
-
-  </section>
-
-
-  <!-- ==================== ABSCHNITT: LEISTUNG UND VERANTWORTUNG ==================== -->
-  <section class="leistung">
-
-    <h2 class="leistung__titel">Leistung und Verantwortung. Für Deine Zukunft.</h2>
-    <p class="leistung__text">
-      Swiss Taekwondo setzt sich in unserer Vereins- und Systemarbeit
-      für einen fairen, transparenten Sport ein.
-    </p>
-
-    <h3 class="leistung__untertitel">Die Grundsätze:</h3>
-    <ul class="leistung__liste">
-      <li class="leistung__liste-punkt">Faire Selektion</li>
-      <li class="leistung__liste-punkt">Transparente Kommunikation</li>
-      <li class="leistung__liste-punkt">Förderung aller Athlet:innen</li>
-    </ul>
-
-    <p class="leistung__text">
-      Swiss Taekwondo ist Mitglied der nationalen Dachorganisation und
-      unterstützt alle Vereine mit professioneller Führung.
-    </p>
-
-  </section>
-
-
-  <!-- ==================== NEWSLETTER / CALL-TO-ACTION (ROT) ==================== -->
-  <section class="newsletter">
-
-    <h2 class="newsletter__titel">Sei der Unterschied.</h2>
-    <p class="newsletter__text">
-      Das UHP Team – gemeinsam stark, getragen von unserer Community.
-    </p>
-
-    <h3 class="newsletter__untertitel">Wahrnehmung</h3>
-    <p class="newsletter__text">
-      Swiss Taekwondo ist gut in den sozialen Medien präsent.
-      Folge uns auf Instagram und Facebook.
-    </p>
-    <a class="newsletter__link" href="#">Instagram</a>
-    <a class="newsletter__link" href="#">Facebook</a>
-
-    <h3 class="newsletter__untertitel">Partner & Sponsoren werden</h3>
-    <p class="newsletter__text">
-      Als Partner unterstützen Sie gezielt Schweizer Spitzenathleten.
-      Erfahren Sie mehr über unsere Angebote.
-    </p>
-    <a class="newsletter__button" href="#">Jetzt im UHP Team</a>
-
-    <h3 class="newsletter__untertitel">Newsletter</h3>
-    <p class="newsletter__text">Abonniere unseren Newsletter und bleib immer informiert.</p>
-
-    <form class="newsletter__formular">
-      <label class="newsletter__formular-label" for="email">E-Mail-Adresse</label>
-      <input class="newsletter__formular-input" type="email" id="email" name="email" placeholder="deine@email.ch" />
-      <button class="newsletter__formular-button" type="submit">Anmelden</button>
-    </form>
-
-  </section>
-
-
-  <!-- ==================== ABSCHNITT: FÜR ATHLET:INNEN ==================== -->
-  <section class="athleten">
-
-    <h2 class="athleten__titel">Für Athlet:innen. Endlich ein Rahmen.</h2>
-    <p class="athleten__text">
-      Das United High Performance System ermöglicht allen Athlet:innen
-      im Swiss UHP Team professionelle Betreuung und finanzielle Unterstützung.
-    </p>
-
-    <h3 class="athleten__untertitel">Geld</h3>
-    <p class="athleten__text">
-      Unterstützung durch Stipendien und finanzielle Förderung
-      für Spitzensportler:innen.
-    </p>
-
-    <h3 class="athleten__untertitel">Medien</h3>
-    <p class="athleten__text">
-      Professionelle Medienpräsenz und Kommunikationsunterstützung
-      für alle Athlet:innen.
-    </p>
-
-  </section>
-
-
-  <!-- ==================== ABSCHNITT: FÜR DIE SCHWEIZ ==================== -->
-  <section class="schweiz">
-
-    <h2 class="schweiz__titel">Für die Schweiz: Stärker durch geteilte Erfahrung.</h2>
-    <p class="schweiz__text">
-      Das UHP Team gibt allen Schweizer Spitzensportlern einen Rahmen –
-      ergänzt durch Erfahrung von internationalen Spitzenteams wie dem
-      deutschen, niederländischen oder koreanischen Nationalteam.
-    </p>
-
-  </section>
-
-
-  <!-- ==================== PARTNER UND TRÄGER ==================== -->
-  <section class="partner">
-
-    <h2 class="partner__titel">Unsere Partner & Träger</h2>
-    <img class="partner__logo" src="images/partner-sporthilfe.png" alt="Swiss Sporthilfe" />
-    <img class="partner__logo" src="images/partner-deutsche-taekwondo.png" alt="Deutschen Taekwondo" />
-    <img class="partner__logo" src="images/partner-swiss-taekwondo.png" alt="Swiss Taekwondo" />
-
-  </section>
-
-
-  <!-- ==================== FOOTER (Fusszeile) ==================== -->
+  <!-- ==================== FOOTER ==================== -->
+  <!-- Hintergrund: Schwarz -->
   <footer class="footer">
 
+    <!-- Logo im Footer -->
+    <img class="footer__logo" src="images/logo-swiss-taekwondo.png" alt="Swiss Taekwondo Logo" />
+
+    <!-- Adresse und Kontakt -->
     <address class="footer__adresse">
-      <p class="footer__text">Swiss Taekwondo</p>
-      <p class="footer__text">Haus des Sports, 3000 Bern</p>
+      <!--
+        <address>: HTML-Element für Kontaktinformationen.
+        Wir setzen font-style: normal im CSS.
+      -->
+      <p class="footer__text">Swiss Taekwondo · UHP Team</p>
+      <p class="footer__text">Haus des Sports</p>
+      <p class="footer__text">Postfach 606</p>
+      <p class="footer__text">3000 Bern 22</p>
       <a class="footer__link" href="mailto:info@swiss-taekwondo.ch">info@swiss-taekwondo.ch</a>
-      <a class="footer__link" href="tel:+41123456789">+41 12 345 67 89</a>
+      <a class="footer__link" href="tel:+41313595757">+41 31 359 57 57</a>
     </address>
 
+    <!-- Kontaktformular im Footer -->
+    <form class="footer__formular">
+      <!-- Name -->
+      <label class="footer__formular-label" for="name">Name</label>
+      <input class="footer__formular-input" type="text" id="name" name="name" placeholder="Dein Name" />
+
+      <!-- E-Mail -->
+      <label class="footer__formular-label" for="footer-email">E-Mail</label>
+      <input class="footer__formular-input" type="email" id="footer-email" name="email" placeholder="deine@email.ch" />
+
+      <!-- Nachricht -->
+      <label class="footer__formular-label" for="nachricht">Nachricht</label>
+      <textarea class="footer__formular-textarea" id="nachricht" name="nachricht" placeholder="Deine Nachricht..."></textarea>
+      <!--
+        <textarea>: Mehrzeiliges Eingabefeld für längere Texte.
+        Anders als <input> hat es ein schliessendes Tag.
+      -->
+
+      <button class="footer__formular-button" type="submit">Senden</button>
+    </form>
+
+    <!-- Footer-Navigation -->
     <nav class="footer__nav">
       <a class="footer__nav-link" href="#">Impressum</a>
       <a class="footer__nav-link" href="#">Datenschutz</a>
       <a class="footer__nav-link" href="#">Kontakt</a>
     </nav>
 
+    <!-- Copyright -->
     <p class="footer__copyright">© 2024 Swiss Taekwondo. Alle Rechte vorbehalten.</p>
 
   </footer>
