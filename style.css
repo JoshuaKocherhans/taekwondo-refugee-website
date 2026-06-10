@@ -1,150 +1,240 @@
-/* ============================================
-   CSS VARIABLEN – SWISS TAEKWONDO UHP TEAM
-   Alle Werte kommen aus dem offiziellen Style Guide.
-   Variablen werden überall mit var(--name) verwendet.
-   ============================================ */
+/* ============================================================
+   STYLE.CSS – Swiss Taekwondo · United High Performance Team
+   Struktur:
+   1. CSS-Variablen (Farben, Abstände, Schriften)
+   2. Reset & Basis
+   3. Wiederverwendbare Klassen (Buttons, Formulare)
+   4. Komponenten (Header, Hero, Sections, Footer)
+   5. Responsive (Desktop ab 768px)
+   ============================================================ */
 
+
+/* ============================================================
+   1. CSS-VARIABLEN
+   Variablen beginnen mit -- und werden mit var() verwendet.
+   Vorteil: Farbe an einer Stelle ändern → überall aktuell.
+   ============================================================ */
 :root {
+  /* Farben aus dem Styleguide */
+  --farbe-rot:        #C1002A; /* Signal-Rot: CTAs, Akzente */
+  --farbe-schwarz:    #000000; /* Footer, Hero-Hintergrund  */
+  --farbe-weiss:      #FFFFFF; /* Navigation, Cards         */
+  --farbe-grau-hell:  #F0F0F7; /* Abschnitt-Hintergründe   */
+  --farbe-grau-text:  #646464; /* Body-Text                 */
+  --farbe-border:     #CCCCCC; /* Formular-Rahmen           */
 
-  /* FARBEN */
-  --farbe-rot:          #C1002A;  /* Signal-Rot: Buttons, Tags, rote Sections   */
-  --farbe-blau:         #6374A2;  /* Brand-Blau: Logo, Akzente                  */
-  --farbe-schwarz:      #000000;  /* Schwarz: Footer, dunkle Bereiche           */
-  --farbe-grau-body:    #646464;  /* Normaler Fliesstext                        */
-  --farbe-grau-subtle:  #A0A0A5;  /* Labels, Captions, dekorativ                */
-  --farbe-grau-border:  #CCCCCC;  /* Rahmen bei Formularen                      */
-  --farbe-bg-hell:      #F0F0F7;  /* Hellgrauer Hintergrund                     */
-  --farbe-placeholder:  #D9D9D9;  /* Bild-Platzhalter                           */
-  --farbe-weiss:        #FFFFFF;  /* Weiss für helle Sections                   */
+  /* Abstände */
+  --abstand-s:  16px;
+  --abstand-m:  32px;
+  --abstand-l:  56px;
 
-  /* SECTION HINTERGRÜNDE – laut Style Guide */
-  --bg-navigation:  #FFFFFF;  /* Header                      */
-  --bg-hero:        #000000;  /* Hero Bild                   */
-  --bg-einleitung:  #FFFFFF;  /* Starke Athlet:innen         */
-  --bg-team:        #F0F0F7;  /* Ein Team                    */
-  --bg-ethik:       #FFFFFF;  /* Ethik / Leistung            */
-  --bg-unterschied: #C1002A;  /* Sei der Unterschied – Rot   */
-  --bg-athleten:    #F0F0F7;  /* Benefits Athlet:innen       */
-  --bg-schweiz:     #FFFFFF;  /* Benefits Schweiz            */
-  --bg-partner:     #F0F0F7;  /* Partner & Träger            */
-  --bg-footer:      #000000;  /* Footer – Schwarz            */
-
-  /* SCHRIFT – Inter laut Style Guide */
-  --schrift-familie: 'Inter', sans-serif;
-  --schrift-h1:      36px;   /* Hero Haupttitel              */
-  --schrift-h2:      24px;   /* Abschnittstitel              */
-  --schrift-h3:      18px;   /* Unterabschnittstitel         */
-  --schrift-body:    16px;   /* Normaler Fliesstext          */
-  --schrift-klein:   14px;   /* Labels, Buttons              */
-  --schrift-winzig:  12px;   /* Footer, Copyright            */
-
-  /* ABSTÄNDE */
-  --abstand-xl:   48px;   /* Innenabstand Sections (oben/unten)  */
-  --abstand-l:    32px;   /* Zwischen grossen Elementen          */
-  --abstand-m:    20px;   /* Seitenabstand, mittlere Abstände    */
-  --abstand-s:    12px;   /* Zwischen kleinen Elementen          */
-  --abstand-xs:    8px;   /* Kleine Lücken                       */
-
-  /* SONSTIGES */
-  --radius:      4px;    /* Abgerundete Ecken für Buttons/Karten */
-  --max-breite:  480px;  /* Maximale Breite für Mobile           */
+  /* Schrift */
+  --schrift: 'Inter', sans-serif;
 }
 
 
-/* ============================================
-   RESET – Browser-Standardstyles bereinigen
-   ============================================ */
+/* ============================================================
+   2. RESET & BASIS
+   Browser haben eigene Standard-Abstände. Diese setzen wir
+   auf 0 zurück und starten sauber.
+   ============================================================ */
 
-* {
+/* box-sizing: border-box bedeutet: Padding und Border werden
+   INNERHALB der Breite berechnet, nicht dazu addiert. */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  /* Padding und Border werden INNERHALB der Breite berechnet */
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--schrift-familie);
-  color: var(--farbe-grau-body);
-  font-size: var(--schrift-body);
-  /* Seite auf max. 480px begrenzen und zentrieren */
-  max-width: var(--max-breite);
-  margin-left: auto;
-  margin-right: auto;
+  font-family: var(--schrift);
+  font-size: 16px;
+  line-height: 1.6;           /* Zeilenabstand: 160% der Schriftgrösse */
+  color: var(--farbe-schwarz);
   background-color: var(--farbe-weiss);
 }
 
+/* Bilder nie breiter als ihr Container -->
+   display: block entfernt den kleinen Lücken-Bug unter Bildern */
+img {
+  max-width: 100%;
+  display: block;
+}
 
-/* ============================================
-   ROTER BALKEN GANZ OBEN
-   ============================================ */
+/* Links: Unterstrich entfernen, Farbe vom Elternelement erben */
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
+/* Listen: Standard-Aufzählungspunkte entfernen */
+ul {
+  list-style: none;
+}
+
+/* <address> kursiv standardmässig → aufheben */
+address {
+  font-style: normal;
+}
+
+
+/* ============================================================
+   3. WIEDERVERWENDBARE KLASSEN
+
+   "btn" ist ein Button der auf der ganzen Seite gleich aussieht.
+   Modifier-Klassen (btn--rot, btn--weiss) ändern nur die Farbe.
+   ============================================================ */
+
+.btn {
+  display: inline-block;       /* Macht den Link zu einem Block mit Innenabstand */
+  padding: 14px 28px;
+  font-family: var(--schrift);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;      /* Kleine Lücken zwischen den Buchstaben */
+  text-transform: uppercase;   /* GROSSBUCHSTABEN */
+  border: 2px solid transparent;
+  cursor: pointer;             /* Hand-Cursor beim Hover */
+  transition: opacity 0.2s;    /* Weicher Übergang bei Hover */
+}
+
+/* Hover: leicht transparent machen als Feedback */
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn--rot {
+  background-color: var(--farbe-rot);
+  color: var(--farbe-weiss);
+}
+
+.btn--weiss {
+  background-color: var(--farbe-weiss);
+  color: var(--farbe-schwarz);
+}
+
+.btn--weiss-outline {
+  background-color: transparent;
+  color: var(--farbe-weiss);
+  border-color: var(--farbe-weiss);
+}
+
+
+/* ============================================================
+   FORMULARE
+   Alle Input-Felder und Labels sehen überall gleich aus.
+   ============================================================ */
+
+.formular {
+  display: flex;               /* Flex: Kinder untereinander anordnen */
+  flex-direction: column;      /* Richtung: von oben nach unten */
+  gap: 8px;                    /* Abstand zwischen den Elementen */
+  margin-top: var(--abstand-m);
+}
+
+.formular__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--farbe-schwarz);
+  margin-top: 12px;
+}
+
+/* Weisse Variante für dunkle Hintergründe */
+.formular__label--weiss {
+  color: var(--farbe-weiss);
+}
+
+.formular__input,
+.formular__textarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--schrift);
+  font-size: 15px;
+  border: 1px solid var(--farbe-border);
+  background-color: var(--farbe-weiss);
+  color: var(--farbe-schwarz);
+  /* outline entfernen und durch eigenen Fokus-Stil ersetzen */
+  outline: none;
+}
+
+/* Fokus-Stil: Zeigt an welches Feld aktiv ist (Barrierefreiheit!) */
+.formular__input:focus,
+.formular__textarea:focus {
+  border-color: var(--farbe-rot);
+}
+
+.formular__textarea {
+  min-height: 120px;
+  resize: vertical;            /* Nur vertikal vergrösserbar */
+}
+
+/* Checkbox + Label nebeneinander */
+.formular__checkbox-zeile {
+  display: flex;
+  align-items: flex-start;     /* Oben ausrichten */
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.formular__checkbox-zeile input[type="checkbox"] {
+  margin-top: 3px;             /* Kleiner Ausgleich für die Textbasislinie */
+  flex-shrink: 0;              /* Checkbox nicht verkleinern */
+}
+
+.formular .btn {
+  margin-top: var(--abstand-s);
+  align-self: flex-start;      /* Button nicht auf volle Breite strecken */
+}
+
+
+/* ============================================================
+   4. KOMPONENTEN
+   ============================================================ */
+
+/* ---- ROTER BALKEN OBEN ---- */
 .top-bar {
+  width: 100%;
   height: 4px;
   background-color: var(--farbe-rot);
-  width: 100%;
 }
 
 
-/* ============================================
-   WIEDERVERWENDBARES SECTION-LABEL
-   Kleiner Text über Abschnittstiteln z.B. "AUSGABE 001"
-   ============================================ */
-
-.section-label {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-winzig);
-  font-weight: 700;
-  color: var(--farbe-rot);
-  /* Roter Label-Text */
-  text-transform: uppercase;
-  /* Grossbuchstaben */
-  letter-spacing: 2px;
-  /* Buchstabenabstand für Label-Stil */
-  margin: 0 0 var(--abstand-s) 0;
-}
-
-.section-label--weiss {
-  /* Variante für rote Hintergründe – weisse Schrift */
-  color: rgba(255, 255, 255, 0.75);
-}
-
-
-/* ============================================
-   HEADER / NAVIGATION
-   ============================================ */
-
+/* ---- HEADER ---- */
 .header {
-  background-color: var(--bg-navigation);
-  padding: var(--abstand-s) var(--abstand-m);
-  /* Flexbox: Logo links, Nav rechts, vertikal zentriert */
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Logo links, Nav rechts */
   align-items: center;
-  /* Leichter Schatten unter dem Header */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 16px var(--abstand-s);
+  background-color: var(--farbe-weiss);
+  position: sticky;           /* Bleibt beim Scrollen oben kleben */
+  top: 0;
+  z-index: 100;               /* Liegt über allen anderen Elementen */
+  border-bottom: 1px solid var(--farbe-border);
 }
 
 .header__logo {
-  width: 70px;
+  height: 40px;               /* Feste Höhe, Breite passt sich an */
+  width: auto;
 }
 
 .header__nav {
   display: flex;
-  gap: var(--abstand-xs);
+  gap: 16px;
 }
 
 .header__nav-link {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-winzig);
-  color: var(--farbe-grau-body);
-  text-decoration: none;
-  padding: var(--abstand-xs);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--farbe-grau-text);
+  transition: color 0.2s;
 }
 
+/* Aktive Sprache ist schwarz */
 .header__nav-link--aktiv {
-  /* Aktive Sprache: schwarz und fett */
   color: var(--farbe-schwarz);
-  font-weight: 700;
 }
 
 .header__nav-link:hover {
@@ -152,589 +242,276 @@ body {
 }
 
 
-/* ============================================
-   HERO – Text ÜBER dem Bild
-   ============================================ */
-
+/* ---- HERO ---- */
 .hero {
-  position: relative;
-  /* position: relative – Anker für den absolut positionierten Inhalt */
-  height: 420px;
+  position: relative;          /* Damit absolute Kinder richtig positioniert werden */
+  min-height: 70vh;            /* Mindestens 70% der Bildschirmhöhe */
   overflow: hidden;
-  background-color: var(--bg-hero);
 }
 
 .hero__bild {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* object-fit: cover – Bild füllt den Bereich ohne Verzerrung */
+  height: 70vh;
+  object-fit: cover;           /* Bild füllt den Bereich, wird beschnitten */
   object-position: center top;
-  /* Leicht abdunkeln damit Text besser lesbar ist */
-  opacity: 0.6;
+}
+
+/* Dunkle Überlagerung: position absolute = liegt über dem Bild */
+.hero__overlay {
+  position: absolute;
+  inset: 0;                    /* inset: 0 = top/right/bottom/left: 0 */
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.75) 0%,
+    rgba(0,0,0,0.2) 100%
+  );
 }
 
 .hero__inhalt {
-  /* position: absolute – liegt ÜBER dem Bild */
   position: absolute;
-  bottom: var(--abstand-l);
-  left: var(--abstand-m);
-  right: var(--abstand-m);
+  bottom: var(--abstand-m);
+  left: var(--abstand-s);
+  right: var(--abstand-s);
+  color: var(--farbe-weiss);
 }
 
 .hero__label {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-winzig);
-  color: rgba(255, 255, 255, 0.75);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin: 0 0 var(--abstand-xs) 0;
+  color: var(--farbe-rot);
+  margin-bottom: 8px;
 }
 
 .hero__titel {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-h1);
-  font-weight: 700;
-  color: var(--farbe-weiss);
-  margin: 0 0 var(--abstand-m) 0;
-  line-height: 1.15;
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 16px;
 }
 
-.hero__button {
-  /* Roter CTA-Button */
-  display: inline-block;
-  background-color: var(--farbe-rot);
-  color: var(--farbe-weiss);
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
-  font-weight: 700;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: var(--abstand-s) var(--abstand-m);
-  border-radius: var(--radius);
-}
-
-.hero__button:hover {
-  background-color: #a0001f;
-}
-
-
-/* ============================================
-   EINLEITUNG – AUSGABE 001 / STARKE ATHLET:INNEN
-   Hintergrund: Weiss
-   ============================================ */
-
-.einleitung {
-  background-color: var(--bg-einleitung);
-  padding: var(--abstand-xl) var(--abstand-m);
-}
-
-.einleitung__titel {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-h2);
-  font-weight: 700;
-  color: var(--farbe-schwarz);
-  /* Roter linker Akzentbalken */
-  border-left: 4px solid var(--farbe-rot);
-  padding-left: var(--abstand-s);
-  margin: 0 0 var(--abstand-m) 0;
-  line-height: 1.3;
-}
-
-.einleitung__text {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-body);
-  color: var(--farbe-grau-body);
-  line-height: 1.7;
-  margin: 0 0 var(--abstand-m) 0;
-}
-
-
-/* ============================================
-   TEAM – EIN TEAM. OHNE WENN UND ABER.
-   Hintergrund: Hellgrau
-   ============================================ */
-
-.team {
-  background-color: var(--bg-team);
-  padding: var(--abstand-xl) var(--abstand-m);
-}
-
-.team__titel {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-h2);
-  font-weight: 700;
-  color: var(--farbe-schwarz);
-  border-left: 4px solid var(--farbe-rot);
-  padding-left: var(--abstand-s);
-  margin: 0 0 var(--abstand-m) 0;
-  line-height: 1.3;
-}
-
-.team__untertitel {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-h3);
-  font-weight: 700;
-  color: var(--farbe-schwarz);
-  margin: var(--abstand-l) 0 var(--abstand-s) 0;
-}
-
-.team__text {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-body);
-  color: var(--farbe-grau-body);
-  line-height: 1.7;
-  margin: 0 0 var(--abstand-m) 0;
-}
-
-.team__liste {
-  padding-left: var(--abstand-l);
-  margin: 0 0 var(--abstand-m) 0;
-}
-
-.team__liste-punkt {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-body);
-  color: var(--farbe-grau-body);
-  line-height: 1.8;
-  margin-bottom: var(--abstand-xs);
-}
-
-.team__liste-punkt::marker {
-  /* ::marker – Style für den roten Aufzählungspunkt */
-  color: var(--farbe-rot);
-}
-
-
-/* ============================================
-   ETHIK – LEISTUNG UND VERANTWORTUNG
-   Hintergrund: Weiss
-   ============================================ */
-
-.ethik {
-  background-color: var(--bg-ethik);
-  padding: var(--abstand-xl) var(--abstand-m);
-}
-
-.ethik__titel {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-h2);
-  font-weight: 700;
-  color: var(--farbe-schwarz);
-  border-left: 4px solid var(--farbe-rot);
-  padding-left: var(--abstand-s);
-  margin: 0 0 var(--abstand-m) 0;
-  line-height: 1.3;
-}
-
-.ethik__untertitel {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-h3);
-  font-weight: 700;
-  color: var(--farbe-schwarz);
-  margin: var(--abstand-l) 0 var(--abstand-s) 0;
-}
-
-.ethik__text {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-body);
-  color: var(--farbe-grau-body);
-  line-height: 1.7;
-  margin: 0 0 var(--abstand-m) 0;
-}
-
-.ethik__liste {
-  padding-left: var(--abstand-l);
-  margin: 0 0 var(--abstand-m) 0;
-}
-
-.ethik__liste-punkt {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-body);
-  color: var(--farbe-grau-body);
-  line-height: 1.8;
-  margin-bottom: var(--abstand-xs);
-}
-
-.ethik__liste-punkt::marker {
-  color: var(--farbe-rot);
-}
-
-
-/* ============================================
-   UNTERSCHIED – SEI DER UNTERSCHIED
-   Hintergrund: Rot
-   ============================================ */
-
-.unterschied {
-  background-color: var(--bg-unterschied);
-  padding: var(--abstand-xl) var(--abstand-m);
-}
-
-.unterschied__titel {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-h2);
-  font-weight: 700;
-  color: var(--farbe-weiss);
-  margin: 0 0 var(--abstand-m) 0;
-  line-height: 1.3;
-}
-
-.unterschied__untertitel {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-h3);
-  font-weight: 700;
-  color: var(--farbe-weiss);
-  margin: var(--abstand-l) 0 var(--abstand-s) 0;
-}
-
-.unterschied__text {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-body);
-  color: var(--farbe-weiss);
-  line-height: 1.7;
-  margin: 0 0 var(--abstand-m) 0;
+.hero__untertitel {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: var(--abstand-m);
   opacity: 0.9;
 }
 
-.unterschied__social {
+.hero__buttons {
   display: flex;
-  gap: var(--abstand-m);
-  margin-bottom: var(--abstand-l);
+  flex-wrap: wrap;             /* Buttons umbrechen wenn kein Platz */
+  gap: 12px;
 }
 
-.unterschied__social-link {
-  display: flex;
-  align-items: center;
-  gap: var(--abstand-xs);
-  color: var(--farbe-weiss);
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-body);
+
+/* ---- SECTIONS (allgemein) ----
+   Alle Abschnitte haben gleiche Innenabstände.
+   Modifier-Klassen (--weiss, --grau, --rot, --schwarz)
+   ändern nur den Hintergrund. */
+.section {
+  padding: var(--abstand-l) var(--abstand-s);
+}
+
+.section--weiss   { background-color: var(--farbe-weiss); }
+.section--grau    { background-color: var(--farbe-grau-hell); }
+.section--rot     { background-color: var(--farbe-rot); }
+.section--schwarz { background-color: var(--farbe-schwarz); }
+
+/* Section-Label (kleiner Text über der Überschrift) */
+.section__label {
+  font-size: 11px;
   font-weight: 700;
-  text-decoration: none;
-}
-
-.unterschied__social-link:hover {
-  opacity: 0.8;
-}
-
-.unterschied__social-icon {
-  font-size: 20px;
-}
-
-.unterschied__button {
-  display: block;
-  /* display: block – Button nimmt volle Breite ein */
-  background-color: var(--farbe-weiss);
-  color: var(--farbe-rot);
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
-  font-weight: 700;
-  text-decoration: none;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: var(--abstand-s) var(--abstand-m);
-  border-radius: var(--radius);
-  margin-bottom: var(--abstand-l);
-  text-align: center;
+  color: var(--farbe-rot);
+  margin-bottom: 12px;
 }
 
-.unterschied__button:hover {
-  background-color: #f0f0f0;
+.section__label--weiss {
+  color: rgba(255,255,255,0.7);
 }
 
-.unterschied__formular {
+.section__titel {
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: var(--abstand-s);
+}
+
+.section__titel--weiss {
+  color: var(--farbe-weiss);
+}
+
+.section__text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--farbe-grau-text);
+  margin-bottom: 16px;
+}
+
+.section__text--weiss {
+  color: rgba(255,255,255,0.85);
+}
+
+/* Liste mit rotem Strich links */
+.section__liste {
+  margin-top: var(--abstand-s);
   display: flex;
   flex-direction: column;
-  /* flex-direction: column – Elemente untereinander */
+  gap: 12px;
+}
+
+.section__liste-punkt {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--farbe-grau-text);
+  padding-left: 16px;
+  border-left: 3px solid var(--farbe-rot);
+}
+
+
+/* ---- ENGAGEMENT-OPTIONEN ---- */
+.engagement__optionen {
+  display: flex;
+  flex-direction: column;
+  gap: var(--abstand-m);
+  margin-bottom: var(--abstand-m);
+}
+
+.engagement__option-titel {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--farbe-weiss);
+  margin-bottom: 8px;
+}
+
+.engagement__option-text {
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 12px;
+}
+
+
+/* ---- ATHLETEN-KARTEN ---- */
+.karten {
+  display: flex;
+  flex-direction: column;      /* Mobile: untereinander */
   gap: var(--abstand-s);
+  margin-top: var(--abstand-m);
 }
 
-.unterschied__formular-label {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
-  color: var(--farbe-weiss);
+/* <article> = eigenständige Karte */
+.karte {
+  background-color: var(--farbe-weiss);
+  overflow: hidden;
+}
+
+.karte__bild {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background-color: var(--farbe-border); /* Platzhalter-Farbe */
+}
+
+.karte__info {
+  font-size: 12px;
   font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--farbe-rot);
+  padding: 12px 16px 4px;
 }
 
-.unterschied__formular-input {
-  width: 100%;
-  padding: var(--abstand-s) var(--abstand-m);
-  border-radius: var(--radius);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background-color: rgba(255, 255, 255, 0.15);
-  color: var(--farbe-weiss);
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-body);
-}
-
-.unterschied__formular-input::placeholder {
-  /* ::placeholder – Stil für den grauen Hinweistext im Feld */
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.unterschied__formular-button {
-  width: 100%;
-  background-color: var(--farbe-schwarz);
-  color: var(--farbe-weiss);
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-body);
-  font-weight: 700;
-  padding: var(--abstand-s) var(--abstand-m);
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  /* cursor: pointer – Mauszeiger wird zur Hand */
-}
-
-.unterschied__formular-button:hover {
-  background-color: #222222;
+/* <blockquote> = Zitat */
+.karte__zitat {
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--farbe-grau-text);
+  padding: 0 16px 16px;
 }
 
 
-/* ============================================
-   ATHLETEN – BENEFITS FÜR ATHLET:INNEN
-   Hintergrund: Hellgrau
-   ============================================ */
-
-.athleten {
-  background-color: var(--bg-athleten);
-  padding: var(--abstand-xl) var(--abstand-m);
-}
-
-.athleten__titel {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-h2);
-  font-weight: 700;
-  color: var(--farbe-schwarz);
-  border-left: 4px solid var(--farbe-rot);
-  padding-left: var(--abstand-s);
-  margin: 0 0 var(--abstand-m) 0;
-  line-height: 1.3;
-}
-
-.athleten__untertitel {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-h3);
-  font-weight: 700;
-  color: var(--farbe-schwarz);
-  margin: var(--abstand-l) 0 var(--abstand-s) 0;
-}
-
-.athleten__text {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-body);
-  color: var(--farbe-grau-body);
-  line-height: 1.7;
-  margin: 0 0 var(--abstand-m) 0;
-}
-
-
-/* ============================================
-   SCHWEIZ – BENEFITS FÜR DIE SCHWEIZ
-   Hintergrund: Weiss
-   ============================================ */
-
-.schweiz {
-  background-color: var(--bg-schweiz);
-  padding: var(--abstand-xl) var(--abstand-m);
-}
-
-.schweiz__titel {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-h2);
-  font-weight: 700;
-  color: var(--farbe-schwarz);
-  border-left: 4px solid var(--farbe-rot);
-  padding-left: var(--abstand-s);
-  margin: 0 0 var(--abstand-m) 0;
-  line-height: 1.3;
-}
-
-.schweiz__text {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-body);
-  color: var(--farbe-grau-body);
-  line-height: 1.7;
-  margin: 0;
-}
-
-
-/* ============================================
-   PARTNER – UNSERE PARTNER & TRÄGER
-   Hintergrund: Hellgrau
-   ============================================ */
-
-.partner {
-  background-color: var(--bg-partner);
-  padding: var(--abstand-xl) var(--abstand-m);
-}
-
+/* ---- PARTNER-KARTEN ---- */
 .partner__karten {
   display: flex;
   flex-direction: column;
-  /* Karten untereinander auf Mobile */
   gap: var(--abstand-m);
+  margin-top: var(--abstand-m);
 }
 
 .partner__karte {
-  background-color: var(--farbe-weiss);
-  border-radius: var(--radius);
-  padding: var(--abstand-m);
-  display: flex;
-  align-items: center;
-  gap: var(--abstand-m);
-  /* Leichter Schatten für Karten-Effekt */
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  border-top: 2px solid rgba(255,255,255,0.3);
+  padding-top: var(--abstand-s);
 }
 
-.partner__karte-logo {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  /* object-fit: contain – Logo wird nicht abgeschnitten */
-  flex-shrink: 0;
-  /* flex-shrink: 0 – Logo behält seine Grösse */
+.partner__logo {
+  height: 40px;
+  width: auto;
+  margin-bottom: 12px;
+  filter: brightness(0) invert(1); /* Logo weiss einfärben */
 }
 
-.partner__karte-name {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
-  font-weight: 600;
-  color: var(--farbe-schwarz);
-  margin: 0;
+.partner__name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--farbe-weiss);
+  margin-bottom: 4px;
+}
+
+.partner__rolle {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 8px;
+}
+
+.partner__link {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  text-decoration: underline;
 }
 
 
-/* ============================================
-   FOOTER
-   Hintergrund: Schwarz
-   ============================================ */
-
+/* ---- FOOTER ---- */
 .footer {
-  background-color: var(--bg-footer);
-  padding: var(--abstand-xl) var(--abstand-m);
+  background-color: var(--farbe-schwarz);
+  color: var(--farbe-weiss);
+  padding: var(--abstand-l) var(--abstand-s);
+  display: flex;
+  flex-direction: column;
+  gap: var(--abstand-m);
 }
 
 .footer__logo {
-  width: 80px;
-  margin-bottom: var(--abstand-l);
-  /* filter: macht das Logo weiss auf schwarzem Hintergrund */
-  filter: brightness(0) invert(1);
+  height: 40px;
+  width: auto;
+  filter: brightness(0) invert(1); /* Logo weiss einfärben */
 }
 
 .footer__adresse {
-  font-style: normal;
-  /* font-style: normal – <address> hat standardmässig kursive Schrift */
-  margin-bottom: var(--abstand-l);
-}
-
-.footer__text {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
-  color: var(--farbe-grau-subtle);
-  margin: 0 0 var(--abstand-xs) 0;
-  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
 }
 
 .footer__link {
-  display: block;
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
-  color: var(--farbe-grau-subtle);
-  text-decoration: none;
-  margin-bottom: var(--abstand-xs);
-}
-
-.footer__link:hover {
   color: var(--farbe-weiss);
+  text-decoration: underline;
+  margin-top: 4px;
 }
 
-/* Kontaktformular im Footer */
-.footer__formular {
-  display: flex;
-  flex-direction: column;
-  gap: var(--abstand-s);
-  margin-bottom: var(--abstand-l);
-}
-
-.footer__formular-label {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-klein);
-  color: var(--farbe-grau-subtle);
-  font-weight: 600;
-}
-
-.footer__formular-input {
-  width: 100%;
-  padding: var(--abstand-s) var(--abstand-m);
-  border-radius: var(--radius);
-  border: 1px solid #333333;
-  background-color: #111111;
-  color: var(--farbe-weiss);
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-body);
-}
-
-.footer__formular-input::placeholder {
-  color: #555555;
-}
-
-.footer__formular-textarea {
-  width: 100%;
-  padding: var(--abstand-s) var(--abstand-m);
-  border-radius: var(--radius);
-  border: 1px solid #333333;
-  background-color: #111111;
-  color: var(--farbe-weiss);
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-body);
-  /* Höhe des Textarea */
-  height: 100px;
-  resize: vertical;
-  /* resize: vertical – Benutzer kann nur vertikal vergrössern */
-}
-
-.footer__formular-textarea::placeholder {
-  color: #555555;
-}
-
-.footer__formular-button {
-  width: 100%;
-  background-color: var(--farbe-rot);
-  color: var(--farbe-weiss);
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-body);
-  font-weight: 700;
-  padding: var(--abstand-s) var(--abstand-m);
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.footer__formular-button:hover {
-  background-color: #a0001f;
-}
-
-/* Footer Navigation */
 .footer__nav {
   display: flex;
   flex-wrap: wrap;
-  /* flex-wrap: wrap – Links brechen in nächste Zeile wenn nötig */
-  gap: var(--abstand-s);
-  margin-bottom: var(--abstand-l);
-  border-top: 1px solid #333333;
-  padding-top: var(--abstand-m);
+  gap: 16px;
 }
 
 .footer__nav-link {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-winzig);
-  color: var(--farbe-grau-subtle);
-  text-decoration: none;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  transition: color 0.2s;
 }
 
 .footer__nav-link:hover {
@@ -742,8 +519,107 @@ body {
 }
 
 .footer__copyright {
-  font-family: var(--schrift-familie);
-  font-size: var(--schrift-winzig);
-  color: var(--farbe-grau-subtle);
-  margin: 0;
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+}
+
+
+/* ============================================================
+   5. RESPONSIVE – DESKTOP AB 768px
+
+   @media = Media Query: CSS-Regeln die NUR ab einer bestimmten
+   Bildschirmbreite gelten. Das nennt man "Mobile First":
+   Zuerst schreibt man das Mobile-CSS, dann ergänzt man
+   Desktop-Änderungen hier unten.
+   ============================================================ */
+@media (min-width: 768px) {
+
+  /* Mehr Innenabstand auf grossen Bildschirmen */
+  .section {
+    padding: 80px 64px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Section-Hintergründe über volle Breite: Wrapper-Trick */
+  .section--weiss,
+  .section--grau,
+  .section--rot,
+  .section--schwarz {
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Innerer Container für den Text */
+  .section--weiss > *,
+  .section--grau > *,
+  .section--rot > *,
+  .section--schwarz > * {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Hero Titel grösser auf Desktop */
+  .hero__titel {
+    font-size: 60px;
+  }
+
+  .hero__inhalt {
+    left: 64px;
+    right: 64px;
+    bottom: 64px;
+    max-width: 700px;
+  }
+
+  /* Abschnittstitel grösser */
+  .section__titel {
+    font-size: 40px;
+  }
+
+  /* Athleten-Karten nebeneinander (3 Spalten) */
+  .karten {
+    flex-direction: row;         /* Nebeneinander statt untereinander */
+  }
+
+  .karte {
+    flex: 1;                     /* Alle Karten gleich breit */
+  }
+
+  /* Partner-Karten nebeneinander */
+  .partner__karten {
+    flex-direction: row;
+  }
+
+  .partner__karte {
+    flex: 1;
+  }
+
+  /* Engagement-Optionen nebeneinander */
+  .engagement__optionen {
+    flex-direction: row;
+  }
+
+  .engagement__option {
+    flex: 1;
+  }
+
+  /* Header mehr Padding */
+  .header {
+    padding: 16px 64px;
+  }
+
+  /* Footer Grid statt Stack */
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;  /* 2 Spalten */
+    gap: 40px;
+    padding: 80px 64px;
+  }
+
+  .footer__copyright {
+    grid-column: 1 / -1;             /* Über beide Spalten */
+  }
+
 }
