@@ -1,32 +1,26 @@
 /* ============================================================
-   STYLE.CSS – Swiss Taekwondo · United High Performance Team
-   Struktur:
-   1. CSS-Variablen (Farben, Abstände, Schriften)
-   2. Reset & Basis
-   3. Wiederverwendbare Klassen (Buttons, Formulare)
-   4. Komponenten (Header, Hero, Sections, Footer)
-   5. Responsive (Desktop ab 768px)
+   SWISS TAEKWONDO – UHP TEAM
+   style.css
    ============================================================ */
 
 
 /* ============================================================
-   1. CSS-VARIABLEN
-   Variablen beginnen mit -- und werden mit var() verwendet.
-   Vorteil: Farbe an einer Stelle ändern → überall aktuell.
+   1. DESIGN TOKENS
+   Alle Farben, Abstände und die Schrift als Variablen –
+   so muss man nur hier etwas ändern, nicht überall.
    ============================================================ */
 :root {
-  /* Farben aus dem Styleguide */
-  --farbe-rot:        #C1002A; /* Signal-Rot: CTAs, Akzente */
-  --farbe-schwarz:    #000000; /* Footer, Hero-Hintergrund  */
-  --farbe-weiss:      #FFFFFF; /* Navigation, Cards         */
-  --farbe-grau-hell:  #F0F0F7; /* Abschnitt-Hintergründe   */
-  --farbe-grau-text:  #646464; /* Body-Text                 */
-  --farbe-border:     #CCCCCC; /* Formular-Rahmen           */
+  --farbe-rot:       #CC0000;
+  --farbe-rot-dunkel:#A80000;
+  --farbe-schwarz:   #111111;
+  --farbe-weiss:     #FFFFFF;
+  --farbe-grau-hell: #F5F5F5;
+  --farbe-grau-text: #444444;
+  --farbe-border:    #DDDDDD;
 
-  /* Abstände */
-  --abstand-s:  16px;
-  --abstand-m:  32px;
-  --abstand-l:  56px;
+  --abstand-s: 24px;
+  --abstand-m: 40px;
+  --abstand-l: 64px;
 
   /* Schrift */
   --schrift: 'Inter', sans-serif;
@@ -90,25 +84,30 @@ address {
 
 .btn {
   display: inline-block;       /* Macht den Link zu einem Block mit Innenabstand */
-  padding: 14px 28px;
+  padding: 12px 22px;
   font-family: var(--schrift);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.05em;      /* Kleine Lücken zwischen den Buchstaben */
+  letter-spacing: 0.06em;      /* Kleine Lücken zwischen den Buchstaben */
   text-transform: uppercase;   /* GROSSBUCHSTABEN */
   border: 2px solid transparent;
   cursor: pointer;             /* Hand-Cursor beim Hover */
-  transition: opacity 0.2s;    /* Weicher Übergang bei Hover */
+  transition: background-color 0.2s, opacity 0.2s, transform 0.15s;
 }
 
-/* Hover: leicht transparent machen als Feedback */
+/* Hover: leicht aufhellen / dunkler */
 .btn:hover {
-  opacity: 0.85;
+  opacity: 0.88;
+  transform: translateY(-1px);
 }
 
 .btn--rot {
   background-color: var(--farbe-rot);
   color: var(--farbe-weiss);
+}
+
+.btn--rot:hover {
+  background-color: var(--farbe-rot-dunkel);
 }
 
 .btn--weiss {
@@ -135,6 +134,11 @@ address {
   margin-top: var(--abstand-m);
 }
 
+/* Kompakte Variante im Engagement-Bereich */
+.formular--kompakt {
+  margin-top: 0;
+}
+
 .formular__label {
   font-size: 13px;
   font-weight: 600;
@@ -145,6 +149,8 @@ address {
 /* Weisse Variante für dunkle Hintergründe */
 .formular__label--weiss {
   color: var(--farbe-weiss);
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .formular__input,
@@ -158,6 +164,7 @@ address {
   color: var(--farbe-schwarz);
   /* outline entfernen und durch eigenen Fokus-Stil ersetzen */
   outline: none;
+  transition: border-color 0.2s;
 }
 
 /* Fokus-Stil: Zeigt an welches Feld aktiv ist (Barrierefreiheit!) */
@@ -182,6 +189,9 @@ address {
 .formular__checkbox-zeile input[type="checkbox"] {
   margin-top: 3px;             /* Kleiner Ausgleich für die Textbasislinie */
   flex-shrink: 0;              /* Checkbox nicht verkleinern */
+  width: 16px;
+  height: 16px;
+  accent-color: var(--farbe-rot); /* Checkbox-Farbe anpassen */
 }
 
 .formular .btn {
@@ -207,7 +217,7 @@ address {
   display: flex;
   justify-content: space-between; /* Logo links, Nav rechts */
   align-items: center;
-  padding: 16px var(--abstand-s);
+  padding: 14px 20px;
   background-color: var(--farbe-weiss);
   position: sticky;           /* Bleibt beim Scrollen oben kleben */
   top: 0;
@@ -216,20 +226,24 @@ address {
 }
 
 .header__logo {
-  height: 40px;               /* Feste Höhe, Breite passt sich an */
+  height: 36px;               /* Feste Höhe, Breite passt sich an */
   width: auto;
+  flex-shrink: 0;
 }
 
 .header__nav {
   display: flex;
-  gap: 16px;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
 .header__nav-link {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--farbe-grau-text);
   transition: color 0.2s;
+  white-space: nowrap;
+  padding: 4px 6px;
 }
 
 /* Aktive Sprache ist schwarz */
@@ -245,13 +259,13 @@ address {
 /* ---- HERO ---- */
 .hero {
   position: relative;          /* Damit absolute Kinder richtig positioniert werden */
-  min-height: 70vh;            /* Mindestens 70% der Bildschirmhöhe */
+  min-height: 60vh;
   overflow: hidden;
 }
 
 .hero__bild {
   width: 100%;
-  height: 70vh;
+  height: 60vh;
   object-fit: cover;           /* Bild füllt den Bereich, wird beschnitten */
   object-position: center top;
 }
@@ -262,46 +276,49 @@ address {
   inset: 0;                    /* inset: 0 = top/right/bottom/left: 0 */
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.75) 0%,
-    rgba(0,0,0,0.2) 100%
+    rgba(0,0,0,0.82) 0%,
+    rgba(0,0,0,0.30) 50%,
+    rgba(0,0,0,0.00) 100%
   );
 }
 
 .hero__inhalt {
   position: absolute;
-  bottom: var(--abstand-m);
-  left: var(--abstand-s);
-  right: var(--abstand-s);
+  bottom: 28px;
+  left: 20px;
+  right: 20px;
   color: var(--farbe-weiss);
 }
 
 .hero__label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--farbe-rot);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .hero__titel {
-  font-size: 36px;
+  font-size: 28px;
   font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 16px;
+  line-height: 1.08;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
 }
 
 .hero__untertitel {
-  font-size: 15px;
-  line-height: 1.5;
-  margin-bottom: var(--abstand-m);
-  opacity: 0.9;
+  font-size: 14px;
+  line-height: 1.55;
+  margin-bottom: 22px;
+  opacity: 0.88;
+  max-width: 480px;
 }
 
 .hero__buttons {
   display: flex;
   flex-wrap: wrap;             /* Buttons umbrechen wenn kein Platz */
-  gap: 12px;
+  gap: 10px;
 }
 
 
@@ -310,7 +327,7 @@ address {
    Modifier-Klassen (--weiss, --grau, --rot, --schwarz)
    ändern nur den Hintergrund. */
 .section {
-  padding: var(--abstand-l) var(--abstand-s);
+  padding: 52px 20px;
 }
 
 .section--weiss   { background-color: var(--farbe-weiss); }
@@ -320,22 +337,23 @@ address {
 
 /* Section-Label (kleiner Text über der Überschrift) */
 .section__label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--farbe-rot);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .section__label--weiss {
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.65);
 }
 
 .section__titel {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 900;
-  line-height: 1.15;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
   margin-bottom: var(--abstand-s);
 }
 
@@ -345,13 +363,13 @@ address {
 
 .section__text {
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--farbe-grau-text);
   margin-bottom: 16px;
 }
 
 .section__text--weiss {
-  color: rgba(255,255,255,0.85);
+  color: rgba(255,255,255,0.82);
 }
 
 /* Liste mit rotem Strich links */
@@ -359,14 +377,14 @@ address {
   margin-top: var(--abstand-s);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .section__liste-punkt {
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--farbe-grau-text);
-  padding-left: 16px;
+  padding-left: 18px;
   border-left: 3px solid var(--farbe-rot);
 }
 
@@ -379,6 +397,17 @@ address {
   margin-bottom: var(--abstand-m);
 }
 
+.engagement__option {
+  /* Trennlinie oben für mobile Lesbarkeit */
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 20px;
+}
+
+.engagement__option:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
 .engagement__option-titel {
   font-size: 16px;
   font-weight: 700;
@@ -389,7 +418,38 @@ address {
 .engagement__option-text {
   font-size: 14px;
   color: rgba(255,255,255,0.8);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+/* Social-Media-Icons im Engagement-Bereich */
+.engagement__social {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.engagement__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: 50%;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.engagement__social-link:hover {
+  background-color: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.8);
+}
+
+.engagement__social-icon {
+  height: 20px;
+  width: 20px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* weiss einfärben wie Partner-Logos */
 }
 
 
@@ -405,6 +465,13 @@ address {
 .karte {
   background-color: var(--farbe-weiss);
   overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.karte:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.13);
+  transform: translateY(-2px);
 }
 
 .karte__bild {
@@ -415,20 +482,21 @@ address {
 }
 
 .karte__info {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--farbe-rot);
-  padding: 12px 16px 4px;
+  padding: 14px 16px 4px;
 }
 
 /* <blockquote> = Zitat */
 .karte__zitat {
   font-size: 14px;
   font-style: italic;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--farbe-grau-text);
-  padding: 0 16px 16px;
+  padding: 0 16px 18px;
 }
 
 
@@ -441,15 +509,17 @@ address {
 }
 
 .partner__karte {
-  border-top: 2px solid rgba(255,255,255,0.3);
+  border-top: 1px solid rgba(255,255,255,0.25);
   padding-top: var(--abstand-s);
 }
 
 .partner__logo {
   height: 40px;
   width: auto;
-  margin-bottom: 12px;
+  max-width: 160px;            /* Verhindert zu breite Logos */
+  margin-bottom: 14px;
   filter: brightness(0) invert(1); /* Logo weiss einfärben */
+  object-fit: contain;
 }
 
 .partner__name {
@@ -461,14 +531,20 @@ address {
 
 .partner__rolle {
   font-size: 13px;
-  color: rgba(255,255,255,0.7);
-  margin-bottom: 8px;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 10px;
+  line-height: 1.5;
 }
 
 .partner__link {
   font-size: 13px;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.55);
   text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.partner__link:hover {
+  color: var(--farbe-weiss);
 }
 
 
@@ -476,15 +552,19 @@ address {
 .footer {
   background-color: var(--farbe-schwarz);
   color: var(--farbe-weiss);
-  padding: var(--abstand-l) var(--abstand-s);
+  padding: 48px 20px;
   display: flex;
   flex-direction: column;
   gap: var(--abstand-m);
 }
 
+/* Footer-Logo: responsive, nie zu gross, nie abgeschnitten */
 .footer__logo {
-  height: 40px;
+  height: auto;
   width: auto;
+  max-height: 60px;
+  max-width: 180px;
+  object-fit: contain;
   filter: brightness(0) invert(1); /* Logo weiss einfärben */
 }
 
@@ -493,24 +573,31 @@ address {
   flex-direction: column;
   gap: 4px;
   font-size: 14px;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
 }
 
 .footer__link {
   color: var(--farbe-weiss);
   text-decoration: underline;
-  margin-top: 4px;
+  margin-top: 6px;
+  display: inline-block;
+  transition: opacity 0.2s;
+}
+
+.footer__link:hover {
+  opacity: 0.75;
 }
 
 .footer__nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 8px 20px;
 }
 
 .footer__nav-link {
   font-size: 13px;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.55);
   transition: color 0.2s;
 }
 
@@ -520,12 +607,58 @@ address {
 
 .footer__copyright {
   font-size: 12px;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.35);
+  line-height: 1.6;
 }
 
 
 /* ============================================================
-   5. RESPONSIVE – DESKTOP AB 768px
+   5. RESPONSIVE – TABLET AB 480px
+
+   Mittlere Geräte: grössere Phones, kleine Tablets.
+   ============================================================ */
+@media (min-width: 480px) {
+
+  .header {
+    padding: 14px 32px;
+  }
+
+  .header__logo {
+    height: 40px;
+  }
+
+  .hero__inhalt {
+    left: 32px;
+    right: 32px;
+    bottom: 40px;
+  }
+
+  .hero__titel {
+    font-size: 38px;
+  }
+
+  .section {
+    padding: 60px 32px;
+  }
+
+  .section__titel {
+    font-size: 30px;
+  }
+
+  .footer {
+    padding: 56px 32px;
+  }
+
+  /* Footer-Logo etwas grösser auf Tablet */
+  .footer__logo {
+    max-height: 68px;
+    max-width: 200px;
+  }
+}
+
+
+/* ============================================================
+   6. RESPONSIVE – DESKTOP AB 768px
 
    @media = Media Query: CSS-Regeln die NUR ab einer bestimmten
    Bildschirmbreite gelten. Das nennt man "Mobile First":
@@ -533,6 +666,55 @@ address {
    Desktop-Änderungen hier unten.
    ============================================================ */
 @media (min-width: 768px) {
+
+  /* Header mehr Padding */
+  .header {
+    padding: 16px 64px;
+  }
+
+  .header__logo {
+    height: 44px;
+  }
+
+  .header__nav-link {
+    font-size: 13px;
+    gap: 16px;
+  }
+
+  .header__nav {
+    gap: 16px;
+  }
+
+  /* Hero grösser auf Desktop */
+  .hero {
+    min-height: 70vh;
+  }
+
+  .hero__bild {
+    height: 70vh;
+  }
+
+  .hero__inhalt {
+    left: 64px;
+    right: 64px;
+    bottom: 64px;
+    max-width: 700px;
+  }
+
+  /* Hero Titel grösser auf Desktop */
+  .hero__titel {
+    font-size: 60px;
+    margin-bottom: 16px;
+  }
+
+  .hero__untertitel {
+    font-size: 16px;
+  }
+
+  .btn {
+    padding: 14px 28px;
+    font-size: 14px;
+  }
 
   /* Mehr Innenabstand auf grossen Bildschirmen */
   .section {
@@ -559,18 +741,8 @@ address {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-  }
-
-  /* Hero Titel grösser auf Desktop */
-  .hero__titel {
-    font-size: 60px;
-  }
-
-  .hero__inhalt {
-    left: 64px;
-    right: 64px;
-    bottom: 64px;
-    max-width: 700px;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   /* Abschnittstitel grösser */
@@ -581,6 +753,9 @@ address {
   /* Athleten-Karten nebeneinander (3 Spalten) */
   .karten {
     flex-direction: row;         /* Nebeneinander statt untereinander */
+    max-width: 1200px !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
   }
 
   .karte {
@@ -590,36 +765,138 @@ address {
   /* Partner-Karten nebeneinander */
   .partner__karten {
     flex-direction: row;
+    max-width: 1200px !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
   }
 
   .partner__karte {
     flex: 1;
+    border-top: none;
+    border-left: 1px solid rgba(255,255,255,0.2);
+    padding-top: 0;
+    padding-left: var(--abstand-s);
   }
 
-  /* Engagement-Optionen nebeneinander */
+  .partner__karte:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  /* Engagement-Optionen nebeneinander (3 Spalten) */
   .engagement__optionen {
     flex-direction: row;
+    max-width: 1200px !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+    align-items: flex-start;
   }
 
   .engagement__option {
     flex: 1;
+    border-top: none;
+    border-left: 1px solid rgba(255,255,255,0.2);
+    padding-top: 0;
+    padding-left: var(--abstand-s);
   }
 
-  /* Header mehr Padding */
-  .header {
-    padding: 16px 64px;
+  .engagement__option:first-child {
+    border-left: none;
+    padding-left: 0;
   }
 
   /* Footer Grid statt Stack */
   .footer {
     display: grid;
-    grid-template-columns: 1fr 1fr;  /* 2 Spalten */
-    gap: 40px;
-    padding: 80px 64px;
+    grid-template-columns: auto 1fr 1fr;  /* Logo | Adresse | Nav */
+    grid-template-rows: auto auto;
+    gap: 32px 48px;
+    padding: 64px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
+  /* Footer auf volle Breite (schwarzer Hintergrund) */
+  .footer {
+    max-width: 100%;
+  }
+
+  /* Logo: erste Spalte, erste Zeile */
+  .footer__logo {
+    grid-column: 1;
+    grid-row: 1;
+    max-height: 72px;
+    max-width: 200px;
+    align-self: start;
+  }
+
+  /* Adresse: zweite Spalte */
+  .footer__adresse {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  /* Nav: dritte Spalte */
+  .footer__nav {
+    grid-column: 3;
+    grid-row: 1;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Copyright: volle Breite, zweite Zeile */
   .footer__copyright {
-    grid-column: 1 / -1;             /* Über beide Spalten */
+    grid-column: 1 / -1;
+    grid-row: 2;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+  }
+}
+
+
+/* ============================================================
+   7. RESPONSIVE – GROSSER DESKTOP AB 1100px
+   ============================================================ */
+@media (min-width: 1100px) {
+
+  .hero__titel {
+    font-size: 72px;
   }
 
+  .hero__inhalt {
+    left: 80px;
+    bottom: 80px;
+    max-width: 780px;
+  }
+
+  .section__titel {
+    font-size: 46px;
+  }
+
+  .section--weiss > *,
+  .section--grau > *,
+  .section--rot > *,
+  .section--schwarz > * {
+    max-width: 900px;
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+
+  .karten,
+  .partner__karten,
+  .engagement__optionen {
+    max-width: 1200px !important;
+    padding-left: 64px !important;
+    padding-right: 64px !important;
+  }
+
+  .footer {
+    padding: 80px 80px;
+    gap: 40px 64px;
+  }
+
+  .footer__logo {
+    max-height: 80px;
+    max-width: 220px;
+  }
 }

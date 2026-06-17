@@ -102,26 +102,47 @@
       Melde dich für unseren Newsletter an und sei Teil der Lösung.
     </p>
     <div class="engagement__optionen">
+
+      <!-- Weitersagen mit Social-Media-Icons -->
       <div class="engagement__option">
         <h3 class="engagement__option-titel">Weitersagen</h3>
         <p class="engagement__option-text">Teile das Projekt in deinem Netzwerk. Jede Stimme hilft.</p>
+        <div class="engagement__social">
+          <a class="engagement__social-link" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"
+             aria-label="UHP Team auf Instagram">
+            <img class="engagement__social-icon" src="images/icon-instagram.png" alt="Instagram" />
+          </a>
+          <a class="engagement__social-link" href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"
+             aria-label="UHP Team auf Facebook">
+            <img class="engagement__social-icon" src="images/icon-facebook.png" alt="Facebook" />
+          </a>
+        </div>
       </div>
+
+      <!-- Partner & Sponsor -->
       <div class="engagement__option">
         <h3 class="engagement__option-titel">Partner &amp; Sponsor werden</h3>
         <p class="engagement__option-text">Das UHP Team sucht engagierte Unternehmen und Stiftungen.</p>
         <a class="btn btn--weiss-outline" href="mailto:info@swiss-taekwondo.ch">Mail an das UHP Team</a>
       </div>
-    </div>
-    <form class="formular" action="#" method="post">
-      <label class="formular__label formular__label--weiss" for="nl-email">Ihre E-Mail-Adresse</label>
-      <input class="formular__input" type="email" id="nl-email" name="email"
-             placeholder="name@beispiel.ch" required />
-      <div class="formular__checkbox-zeile">
-        <input type="checkbox" id="nl-datenschutz" name="datenschutz" required />
-        <label class="formular__label--weiss" for="nl-datenschutz">Ich stimme dem Datenschutz zu *</label>
+
+      <!-- Newsletter -->
+      <div class="engagement__option">
+        <h3 class="engagement__option-titel">Newsletter abonnieren</h3>
+        <p class="engagement__option-text">Bleib informiert über Projekte, Erfolge und Möglichkeiten zum Mitmachen.</p>
+        <form class="formular formular--kompakt" action="#" method="post">
+          <label class="formular__label formular__label--weiss" for="nl-email">Ihre E-Mail-Adresse</label>
+          <input class="formular__input" type="email" id="nl-email" name="email"
+                 placeholder="name@beispiel.ch" required />
+          <div class="formular__checkbox-zeile">
+            <input type="checkbox" id="nl-datenschutz" name="datenschutz" required />
+            <label class="formular__label--weiss" for="nl-datenschutz">Ich stimme dem Datenschutz zu *</label>
+          </div>
+          <button class="btn btn--weiss" type="submit">Anmelden</button>
+        </form>
       </div>
-      <button class="btn btn--weiss" type="submit">Anmelden</button>
-    </form>
+
+    </div>
   </section>
 
   <!-- BENEFITS FÜR ATHLET:INNEN -->
