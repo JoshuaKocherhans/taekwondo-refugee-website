@@ -18,11 +18,31 @@
   <header class="header">
     <img class="header__logo" src="images/logo-swiss-taekwondo.png"
          alt="Swiss Taekwondo UHP Team – zurück zur Startseite" />
-    <nav class="header__nav" aria-label="Sprachauswahl">
-      <a class="header__nav-link header__nav-link--aktiv" href="#" lang="de">Deutsch</a>
-      <a class="header__nav-link" href="#" lang="fr">Français</a>
-      <a class="header__nav-link" href="#" lang="it">Italiano</a>
+
+    <!-- Hauptnavigation -->
+    <nav class="header__nav-haupt" id="hauptnav" aria-label="Hauptnavigation">
+      <a class="header__nav-haupt-link" href="#ausgangslage">Ausgangslage</a>
+      <a class="header__nav-haupt-link" href="#ziel">Ziel</a>
+      <a class="header__nav-haupt-link" href="#ethik">Ethik</a>
+      <a class="header__nav-haupt-link" href="#benefits-athletinnen">Benefits</a>
+      <a class="header__nav-haupt-link" href="#engagement">Engagement</a>
     </nav>
+
+    <!-- Rechte Seite: Sprache + Hamburger -->
+    <div class="header__rechts">
+      <nav class="header__nav-sprache" aria-label="Sprachauswahl">
+        <a class="header__nav-link header__nav-link--aktiv" href="#" lang="de">Deutsch</a>
+        <a class="header__nav-link" href="#" lang="fr">Français</a>
+        <a class="header__nav-link" href="#" lang="it">Italiano</a>
+      </nav>
+
+      <!-- Hamburger (nur Mobile) -->
+      <button class="nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="hauptnav">
+        <span class="nav-toggle__linie"></span>
+        <span class="nav-toggle__linie"></span>
+        <span class="nav-toggle__linie"></span>
+      </button>
+    </div>
   </header>
 
   <!-- HERO -->
@@ -61,7 +81,7 @@
   </section>
 
   <!-- ZIEL -->
-  <section class="section section--grau">
+  <section class="section section--grau" id="ziel">
     <p class="section__label">Ziel</p>
     <h2 class="section__titel">Ein Team.<br>Ohne Wenn und Aber.</h2>
     <p class="section__text">
@@ -78,7 +98,7 @@
   </section>
 
   <!-- ETHIK -->
-  <section class="section section--weiss">
+  <section class="section section--weiss" id="ethik">
     <p class="section__label">Ethik</p>
     <h2 class="section__titel">Leistung und Verantwortung.<br>Kein Widerspruch.</h2>
     <p class="section__text">
@@ -103,7 +123,7 @@
     </p>
     <div class="engagement__optionen">
 
-      <!-- Weitersagen mit Social-Media-Icons -->
+      <!-- Weitersagen -->
       <div class="engagement__option">
         <h3 class="engagement__option-titel">Weitersagen</h3>
         <p class="engagement__option-text">Teile das Projekt in deinem Netzwerk. Jede Stimme hilft.</p>
@@ -129,7 +149,7 @@
       <!-- Newsletter -->
       <div class="engagement__option">
         <h3 class="engagement__option-titel">Newsletter abonnieren</h3>
-        <p class="engagement__option-text">Bleib informiert über Projekte, Erfolge und Möglichkeiten zum Mitmachen.</p>
+        <p class="engagement__option-text">Bleib informiert über Projekte, Erfolge und Möglichkeiten.</p>
         <form class="formular formular--kompakt" action="#" method="post">
           <label class="formular__label formular__label--weiss" for="nl-email">Ihre E-Mail-Adresse</label>
           <input class="formular__input" type="email" id="nl-email" name="email"
@@ -146,7 +166,7 @@
   </section>
 
   <!-- BENEFITS FÜR ATHLET:INNEN -->
-  <section class="section section--grau">
+  <section class="section section--grau" id="benefits-athletinnen">
     <p class="section__label">Benefits · Für die Athlet:innen</p>
     <h2 class="section__titel">Für Athlet:innen:<br>Endlich ein fairer Rahmen.</h2>
     <p class="section__text">
@@ -183,7 +203,7 @@
   </section>
 
   <!-- BENEFITS FÜR DIE SCHWEIZ -->
-  <section class="section section--weiss">
+  <section class="section section--weiss" id="benefits-schweiz">
     <p class="section__label">Benefits · Für die Schweiz</p>
     <h2 class="section__titel">Für die Schweiz:<br>Stärker durch Vielfalt.</h2>
     <p class="section__text">
@@ -194,7 +214,7 @@
   </section>
 
   <!-- PARTNER & TRÄGER -->
-  <section class="section section--rot">
+  <section class="section section--rot" id="partner">
     <p class="section__label section__label--weiss">Initiiert &amp; getragen von</p>
     <h2 class="section__titel section__titel--weiss">Unsere Partner &amp; Träger</h2>
     <div class="partner__karten">
@@ -273,6 +293,9 @@
       Umgesetzt durch SBW Mediamatik Sport, St. Gallen
     </small>
   </footer>
+
+  <!-- JavaScript: ganz unten damit HTML zuerst geladen ist -->
+  <script src="script.js"></script>
 
 </body>
 </html>

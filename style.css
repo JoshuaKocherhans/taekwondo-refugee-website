@@ -29,12 +29,7 @@
 
 /* ============================================================
    2. RESET & BASIS
-   Browser haben eigene Standard-Abstände. Diese setzen wir
-   auf 0 zurück und starten sauber.
    ============================================================ */
-
-/* box-sizing: border-box bedeutet: Padding und Border werden
-   INNERHALB der Breite berechnet, nicht dazu addiert. */
 *,
 *::before,
 *::after {
@@ -46,30 +41,25 @@
 body {
   font-family: var(--schrift);
   font-size: 16px;
-  line-height: 1.6;           /* Zeilenabstand: 160% der Schriftgrösse */
+  line-height: 1.6;
   color: var(--farbe-schwarz);
   background-color: var(--farbe-weiss);
 }
 
-/* Bilder nie breiter als ihr Container -->
-   display: block entfernt den kleinen Lücken-Bug unter Bildern */
 img {
   max-width: 100%;
   display: block;
 }
 
-/* Links: Unterstrich entfernen, Farbe vom Elternelement erben */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* Listen: Standard-Aufzählungspunkte entfernen */
 ul {
   list-style: none;
 }
 
-/* <address> kursiv standardmässig → aufheben */
 address {
   font-style: normal;
 }
@@ -77,25 +67,21 @@ address {
 
 /* ============================================================
    3. WIEDERVERWENDBARE KLASSEN
-
-   "btn" ist ein Button der auf der ganzen Seite gleich aussieht.
-   Modifier-Klassen (btn--rot, btn--weiss) ändern nur die Farbe.
    ============================================================ */
 
 .btn {
-  display: inline-block;       /* Macht den Link zu einem Block mit Innenabstand */
+  display: inline-block;
   padding: 12px 22px;
   font-family: var(--schrift);
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.06em;      /* Kleine Lücken zwischen den Buchstaben */
-  text-transform: uppercase;   /* GROSSBUCHSTABEN */
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   border: 2px solid transparent;
-  cursor: pointer;             /* Hand-Cursor beim Hover */
+  cursor: pointer;
   transition: background-color 0.2s, opacity 0.2s, transform 0.15s;
 }
 
-/* Hover: leicht aufhellen / dunkler */
 .btn:hover {
   opacity: 0.88;
   transform: translateY(-1px);
@@ -124,17 +110,15 @@ address {
 
 /* ============================================================
    FORMULARE
-   Alle Input-Felder und Labels sehen überall gleich aus.
    ============================================================ */
 
 .formular {
-  display: flex;               /* Flex: Kinder untereinander anordnen */
-  flex-direction: column;      /* Richtung: von oben nach unten */
-  gap: 8px;                    /* Abstand zwischen den Elementen */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   margin-top: var(--abstand-m);
 }
 
-/* Kompakte Variante im Engagement-Bereich */
 .formular--kompakt {
   margin-top: 0;
 }
@@ -146,7 +130,6 @@ address {
   margin-top: 12px;
 }
 
-/* Weisse Variante für dunkle Hintergründe */
 .formular__label--weiss {
   color: var(--farbe-weiss);
   font-size: 13px;
@@ -162,12 +145,10 @@ address {
   border: 1px solid var(--farbe-border);
   background-color: var(--farbe-weiss);
   color: var(--farbe-schwarz);
-  /* outline entfernen und durch eigenen Fokus-Stil ersetzen */
   outline: none;
   transition: border-color 0.2s;
 }
 
-/* Fokus-Stil: Zeigt an welches Feld aktiv ist (Barrierefreiheit!) */
 .formular__input:focus,
 .formular__textarea:focus {
   border-color: var(--farbe-rot);
@@ -175,28 +156,27 @@ address {
 
 .formular__textarea {
   min-height: 120px;
-  resize: vertical;            /* Nur vertikal vergrösserbar */
+  resize: vertical;
 }
 
-/* Checkbox + Label nebeneinander */
 .formular__checkbox-zeile {
   display: flex;
-  align-items: flex-start;     /* Oben ausrichten */
+  align-items: flex-start;
   gap: 10px;
   margin-top: 8px;
 }
 
 .formular__checkbox-zeile input[type="checkbox"] {
-  margin-top: 3px;             /* Kleiner Ausgleich für die Textbasislinie */
-  flex-shrink: 0;              /* Checkbox nicht verkleinern */
+  margin-top: 3px;
+  flex-shrink: 0;
   width: 16px;
   height: 16px;
-  accent-color: var(--farbe-rot); /* Checkbox-Farbe anpassen */
+  accent-color: var(--farbe-rot);
 }
 
 .formular .btn {
   margin-top: var(--abstand-s);
-  align-self: flex-start;      /* Button nicht auf volle Breite strecken */
+  align-self: flex-start;
 }
 
 
@@ -215,38 +195,87 @@ address {
 /* ---- HEADER ---- */
 .header {
   display: flex;
-  justify-content: space-between; /* Logo links, Nav rechts */
   align-items: center;
-  padding: 14px 20px;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 60px;
   background-color: var(--farbe-weiss);
-  position: sticky;           /* Bleibt beim Scrollen oben kleben */
+  position: sticky;
   top: 0;
-  z-index: 100;               /* Liegt über allen anderen Elementen */
+  z-index: 200;
   border-bottom: 1px solid var(--farbe-border);
 }
 
 .header__logo {
-  height: 36px;               /* Feste Höhe, Breite passt sich an */
+  height: 36px;
   width: auto;
   flex-shrink: 0;
 }
 
-.header__nav {
+/* Rechte Seite: Sprache + Hamburger */
+.header__rechts {
   display: flex;
+  align-items: center;
   gap: 12px;
   flex-shrink: 0;
+}
+
+/* ---- HAUPTNAVIGATION (Mobile: versteckt) ---- */
+.header__nav-haupt {
+  display: none;
+}
+
+.header__nav-haupt-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--farbe-grau-text);
+  padding: 6px 10px;
+  white-space: nowrap;
+  transition: color 0.2s;
+  position: relative;
+}
+
+/* Roter Unterstrich beim Hover */
+.header__nav-haupt-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background-color: var(--farbe-rot);
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+
+.header__nav-haupt-link:hover {
+  color: var(--farbe-schwarz);
+}
+
+.header__nav-haupt-link:hover::after,
+.header__nav-haupt-link--aktiv::after {
+  transform: scaleX(1);
+}
+
+.header__nav-haupt-link--aktiv {
+  color: var(--farbe-schwarz);
+}
+
+/* ---- SPRACHNAVIGATION ---- */
+.header__nav-sprache {
+  display: flex;
+  gap: 4px;
 }
 
 .header__nav-link {
   font-size: 12px;
   font-weight: 600;
   color: var(--farbe-grau-text);
+  padding: 4px 6px;
   transition: color 0.2s;
   white-space: nowrap;
-  padding: 4px 6px;
 }
 
-/* Aktive Sprache ist schwarz */
 .header__nav-link--aktiv {
   color: var(--farbe-schwarz);
 }
@@ -255,10 +284,74 @@ address {
   color: var(--farbe-rot);
 }
 
+/* ---- HAMBURGER-BUTTON (nur Mobile) ---- */
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.nav-toggle__linie {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--farbe-schwarz);
+  transition: transform 0.25s, opacity 0.25s;
+  transform-origin: center;
+}
+
+/* Hamburger → X wenn geöffnet */
+.nav-toggle[aria-expanded="true"] .nav-toggle__linie:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__linie:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__linie:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---- MOBILES MENÜ (aufgeklappt) ---- */
+.header__nav-haupt--offen {
+  display: flex !important;
+  flex-direction: column;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background-color: var(--farbe-weiss);
+  border-bottom: 2px solid var(--farbe-rot);
+  padding: 12px 0 20px;
+  z-index: 199;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.header__nav-haupt--offen .header__nav-haupt-link {
+  font-size: 16px;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--farbe-border);
+}
+
+.header__nav-haupt--offen .header__nav-haupt-link:last-child {
+  border-bottom: none;
+}
+
+.header__nav-haupt--offen .header__nav-haupt-link::after {
+  display: none;
+}
+
 
 /* ---- HERO ---- */
 .hero {
-  position: relative;          /* Damit absolute Kinder richtig positioniert werden */
+  position: relative;
   min-height: 60vh;
   overflow: hidden;
 }
@@ -266,14 +359,13 @@ address {
 .hero__bild {
   width: 100%;
   height: 60vh;
-  object-fit: cover;           /* Bild füllt den Bereich, wird beschnitten */
+  object-fit: cover;
   object-position: center top;
 }
 
-/* Dunkle Überlagerung: position absolute = liegt über dem Bild */
 .hero__overlay {
   position: absolute;
-  inset: 0;                    /* inset: 0 = top/right/bottom/left: 0 */
+  inset: 0;
   background: linear-gradient(
     to top,
     rgba(0,0,0,0.82) 0%,
@@ -317,15 +409,12 @@ address {
 
 .hero__buttons {
   display: flex;
-  flex-wrap: wrap;             /* Buttons umbrechen wenn kein Platz */
+  flex-wrap: wrap;
   gap: 10px;
 }
 
 
-/* ---- SECTIONS (allgemein) ----
-   Alle Abschnitte haben gleiche Innenabstände.
-   Modifier-Klassen (--weiss, --grau, --rot, --schwarz)
-   ändern nur den Hintergrund. */
+/* ---- SECTIONS (allgemein) ---- */
 .section {
   padding: 52px 20px;
 }
@@ -335,7 +424,6 @@ address {
 .section--rot     { background-color: var(--farbe-rot); }
 .section--schwarz { background-color: var(--farbe-schwarz); }
 
-/* Section-Label (kleiner Text über der Überschrift) */
 .section__label {
   font-size: 10px;
   font-weight: 700;
@@ -372,7 +460,6 @@ address {
   color: rgba(255,255,255,0.82);
 }
 
-/* Liste mit rotem Strich links */
 .section__liste {
   margin-top: var(--abstand-s);
   display: flex;
@@ -398,7 +485,6 @@ address {
 }
 
 .engagement__option {
-  /* Trennlinie oben für mobile Lesbarkeit */
   border-top: 1px solid rgba(255,255,255,0.2);
   padding-top: 20px;
 }
@@ -422,7 +508,7 @@ address {
   line-height: 1.6;
 }
 
-/* Social-Media-Icons im Engagement-Bereich */
+/* Social-Media-Icons */
 .engagement__social {
   display: flex;
   gap: 16px;
@@ -449,19 +535,18 @@ address {
   height: 20px;
   width: 20px;
   object-fit: contain;
-  filter: brightness(0) invert(1); /* weiss einfärben wie Partner-Logos */
+  filter: brightness(0) invert(1);
 }
 
 
 /* ---- ATHLETEN-KARTEN ---- */
 .karten {
   display: flex;
-  flex-direction: column;      /* Mobile: untereinander */
+  flex-direction: column;
   gap: var(--abstand-s);
   margin-top: var(--abstand-m);
 }
 
-/* <article> = eigenständige Karte */
 .karte {
   background-color: var(--farbe-weiss);
   overflow: hidden;
@@ -478,7 +563,7 @@ address {
   width: 100%;
   height: 220px;
   object-fit: cover;
-  background-color: var(--farbe-border); /* Platzhalter-Farbe */
+  background-color: var(--farbe-border);
 }
 
 .karte__info {
@@ -490,7 +575,6 @@ address {
   padding: 14px 16px 4px;
 }
 
-/* <blockquote> = Zitat */
 .karte__zitat {
   font-size: 14px;
   font-style: italic;
@@ -516,9 +600,9 @@ address {
 .partner__logo {
   height: 40px;
   width: auto;
-  max-width: 160px;            /* Verhindert zu breite Logos */
+  max-width: 160px;
   margin-bottom: 14px;
-  filter: brightness(0) invert(1); /* Logo weiss einfärben */
+  filter: brightness(0) invert(1);
   object-fit: contain;
 }
 
@@ -558,14 +642,13 @@ address {
   gap: var(--abstand-m);
 }
 
-/* Footer-Logo: responsive, nie zu gross, nie abgeschnitten */
 .footer__logo {
   height: auto;
   width: auto;
   max-height: 60px;
   max-width: 180px;
   object-fit: contain;
-  filter: brightness(0) invert(1); /* Logo weiss einfärben */
+  filter: brightness(0) invert(1);
 }
 
 .footer__adresse {
@@ -613,43 +696,61 @@ address {
 
 
 /* ============================================================
-   5. RESPONSIVE – TABLET AB 480px
-
-   Mittlere Geräte: grössere Phones, kleine Tablets.
+   5. RESPONSIVE – TABLET AB 744px
+   Hauptnavigation erscheint, Hamburger verschwindet.
    ============================================================ */
-@media (min-width: 480px) {
+@media (min-width: 744px) {
 
   .header {
-    padding: 14px 32px;
+    padding: 0 40px;
+    height: 64px;
   }
 
   .header__logo {
     height: 40px;
   }
 
+  /* Hauptnavigation einblenden */
+  .header__nav-haupt {
+    display: flex;
+    gap: 4px;
+  }
+
+  /* Hamburger ausblenden */
+  .nav-toggle {
+    display: none;
+  }
+
+  .hero {
+    min-height: 65vh;
+  }
+
+  .hero__bild {
+    height: 65vh;
+  }
+
   .hero__inhalt {
-    left: 32px;
-    right: 32px;
-    bottom: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 44px;
   }
 
   .hero__titel {
-    font-size: 38px;
+    font-size: 42px;
   }
 
   .section {
-    padding: 60px 32px;
+    padding: 64px 40px;
   }
 
   .section__titel {
-    font-size: 30px;
+    font-size: 32px;
   }
 
   .footer {
-    padding: 56px 32px;
+    padding: 56px 40px;
   }
 
-  /* Footer-Logo etwas grösser auf Tablet */
   .footer__logo {
     max-height: 68px;
     max-width: 200px;
@@ -658,34 +759,32 @@ address {
 
 
 /* ============================================================
-   6. RESPONSIVE – DESKTOP AB 768px
-
-   @media = Media Query: CSS-Regeln die NUR ab einer bestimmten
-   Bildschirmbreite gelten. Das nennt man "Mobile First":
-   Zuerst schreibt man das Mobile-CSS, dann ergänzt man
-   Desktop-Änderungen hier unten.
+   6. RESPONSIVE – DESKTOP AB 1280px
    ============================================================ */
-@media (min-width: 768px) {
+@media (min-width: 1280px) {
 
-  /* Header mehr Padding */
   .header {
-    padding: 16px 64px;
+    padding: 0 64px;
+    height: 72px;
   }
 
   .header__logo {
     height: 44px;
   }
 
+  .header__nav-haupt {
+    gap: 8px;
+  }
+
+  .header__nav-haupt-link {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
   .header__nav-link {
     font-size: 13px;
-    gap: 16px;
   }
 
-  .header__nav {
-    gap: 16px;
-  }
-
-  /* Hero grösser auf Desktop */
   .hero {
     min-height: 70vh;
   }
@@ -701,7 +800,6 @@ address {
     max-width: 700px;
   }
 
-  /* Hero Titel grösser auf Desktop */
   .hero__titel {
     font-size: 60px;
     margin-bottom: 16px;
@@ -716,14 +814,12 @@ address {
     font-size: 14px;
   }
 
-  /* Mehr Innenabstand auf grossen Bildschirmen */
   .section {
     padding: 80px 64px;
     max-width: 1200px;
     margin: 0 auto;
   }
 
-  /* Section-Hintergründe über volle Breite: Wrapper-Trick */
   .section--weiss,
   .section--grau,
   .section--rot,
@@ -733,7 +829,6 @@ address {
     padding-right: 0;
   }
 
-  /* Innerer Container für den Text */
   .section--weiss > *,
   .section--grau > *,
   .section--rot > *,
@@ -745,21 +840,20 @@ address {
     padding-right: 40px;
   }
 
-  /* Abschnittstitel grösser */
   .section__titel {
     font-size: 40px;
   }
 
-  /* Athleten-Karten nebeneinander (3 Spalten) */
+  /* Karten nebeneinander */
   .karten {
-    flex-direction: row;         /* Nebeneinander statt untereinander */
+    flex-direction: row;
     max-width: 1200px !important;
     padding-left: 40px !important;
     padding-right: 40px !important;
   }
 
   .karte {
-    flex: 1;                     /* Alle Karten gleich breit */
+    flex: 1;
   }
 
   /* Partner-Karten nebeneinander */
@@ -783,13 +877,13 @@ address {
     padding-left: 0;
   }
 
-  /* Engagement-Optionen nebeneinander (3 Spalten) */
+  /* Engagement nebeneinander */
   .engagement__optionen {
     flex-direction: row;
+    align-items: flex-start;
     max-width: 1200px !important;
     padding-left: 40px !important;
     padding-right: 40px !important;
-    align-items: flex-start;
   }
 
   .engagement__option {
@@ -805,23 +899,15 @@ address {
     padding-left: 0;
   }
 
-  /* Footer Grid statt Stack */
+  /* Footer Grid */
   .footer {
     display: grid;
-    grid-template-columns: auto 1fr 1fr;  /* Logo | Adresse | Nav */
+    grid-template-columns: auto 1fr 1fr;
     grid-template-rows: auto auto;
     gap: 32px 48px;
     padding: 64px;
-    max-width: 1200px;
-    margin: 0 auto;
   }
 
-  /* Footer auf volle Breite (schwarzer Hintergrund) */
-  .footer {
-    max-width: 100%;
-  }
-
-  /* Logo: erste Spalte, erste Zeile */
   .footer__logo {
     grid-column: 1;
     grid-row: 1;
@@ -830,13 +916,11 @@ address {
     align-self: start;
   }
 
-  /* Adresse: zweite Spalte */
   .footer__adresse {
     grid-column: 2;
     grid-row: 1;
   }
 
-  /* Nav: dritte Spalte */
   .footer__nav {
     grid-column: 3;
     grid-row: 1;
@@ -844,7 +928,6 @@ address {
     gap: 8px;
   }
 
-  /* Copyright: volle Breite, zweite Zeile */
   .footer__copyright {
     grid-column: 1 / -1;
     grid-row: 2;
@@ -855,9 +938,9 @@ address {
 
 
 /* ============================================================
-   7. RESPONSIVE – GROSSER DESKTOP AB 1100px
+   7. RESPONSIVE – GROSSER DESKTOP AB 1440px
    ============================================================ */
-@media (min-width: 1100px) {
+@media (min-width: 1440px) {
 
   .hero__titel {
     font-size: 72px;
@@ -891,7 +974,7 @@ address {
   }
 
   .footer {
-    padding: 80px 80px;
+    padding: 80px;
     gap: 40px 64px;
   }
 
