@@ -1,42 +1,38 @@
 /* ============================================================
-   SWISS TAEKWONDO – UHP TEAM
-   style.css
+   SWISS TAEKWONDO – UHP TEAM  |  style.css
    ============================================================ */
 
 
 /* ============================================================
    1. DESIGN TOKENS
-   Alle Farben, Abstände und die Schrift als Variablen –
-   so muss man nur hier etwas ändern, nicht überall.
    ============================================================ */
 :root {
-  --farbe-rot:       #CC0000;
-  --farbe-rot-dunkel:#A80000;
-  --farbe-schwarz:   #111111;
-  --farbe-weiss:     #FFFFFF;
-  --farbe-grau-hell: #F5F5F5;
-  --farbe-grau-text: #444444;
-  --farbe-border:    #DDDDDD;
+  --farbe-rot:        #CC0000;
+  --farbe-rot-dunkel: #A80000;
+  --farbe-schwarz:    #111111;
+  --farbe-weiss:      #FFFFFF;
+  --farbe-grau-hell:  #F5F5F5;
+  --farbe-grau-text:  #444444;
+  --farbe-border:     #DDDDDD;
 
   --abstand-s: 24px;
   --abstand-m: 40px;
   --abstand-l: 64px;
 
-  /* Schrift */
   --schrift: 'Inter', sans-serif;
+
+  --header-h-mobile:  60px;
+  --header-h-tablet:  64px;
+  --header-h-desktop: 72px;
 }
 
 
 /* ============================================================
    2. RESET & BASIS
    ============================================================ */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--schrift);
@@ -46,29 +42,15 @@ body {
   background-color: var(--farbe-weiss);
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-}
-
-address {
-  font-style: normal;
-}
+img { max-width: 100%; display: block; }
+a   { text-decoration: none; color: inherit; }
+ul  { list-style: none; }
+address { font-style: normal; }
 
 
 /* ============================================================
-   3. WIEDERVERWENDBARE KLASSEN
+   3. BUTTONS
    ============================================================ */
-
 .btn {
   display: inline-block;
   padding: 12px 22px;
@@ -81,26 +63,11 @@ address {
   cursor: pointer;
   transition: background-color 0.2s, opacity 0.2s, transform 0.15s;
 }
+.btn:hover { opacity: 0.88; transform: translateY(-1px); }
 
-.btn:hover {
-  opacity: 0.88;
-  transform: translateY(-1px);
-}
-
-.btn--rot {
-  background-color: var(--farbe-rot);
-  color: var(--farbe-weiss);
-}
-
-.btn--rot:hover {
-  background-color: var(--farbe-rot-dunkel);
-}
-
-.btn--weiss {
-  background-color: var(--farbe-weiss);
-  color: var(--farbe-schwarz);
-}
-
+.btn--rot          { background-color: var(--farbe-rot); color: var(--farbe-weiss); }
+.btn--rot:hover    { background-color: var(--farbe-rot-dunkel); }
+.btn--weiss        { background-color: var(--farbe-weiss); color: var(--farbe-schwarz); }
 .btn--weiss-outline {
   background-color: transparent;
   color: var(--farbe-weiss);
@@ -109,121 +76,149 @@ address {
 
 
 /* ============================================================
-   FORMULARE
+   4. FORMULARE
    ============================================================ */
-
 .formular {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   margin-top: var(--abstand-m);
+  width: 100%;
 }
+.formular--kompakt { margin-top: 0; }
 
-.formular--kompakt {
-  margin-top: 0;
+.formular__zeile-zwei {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
 .formular__label {
   font-size: 13px;
   font-weight: 600;
   color: var(--farbe-schwarz);
-  margin-top: 12px;
+  margin-top: 8px;
+  display: block;
 }
-
 .formular__label--weiss {
   color: var(--farbe-weiss);
   font-size: 13px;
   font-weight: 600;
+  display: block;
+  margin-top: 10px;
 }
 
 .formular__input,
 .formular__textarea {
   width: 100%;
-  padding: 12px 16px;
+  padding: 11px 14px;
   font-family: var(--schrift);
-  font-size: 15px;
+  font-size: 14px;
   border: 1px solid var(--farbe-border);
   background-color: var(--farbe-weiss);
   color: var(--farbe-schwarz);
   outline: none;
   transition: border-color 0.2s;
+  border-radius: 0;
 }
-
 .formular__input:focus,
-.formular__textarea:focus {
-  border-color: var(--farbe-rot);
-}
+.formular__textarea:focus { border-color: var(--farbe-rot); }
 
-.formular__textarea {
-  min-height: 120px;
-  resize: vertical;
-}
+.formular__textarea { min-height: 120px; resize: vertical; }
 
 .formular__checkbox-zeile {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  margin-top: 8px;
+  margin-top: 10px;
 }
-
 .formular__checkbox-zeile input[type="checkbox"] {
   margin-top: 3px;
   flex-shrink: 0;
   width: 16px;
   height: 16px;
   accent-color: var(--farbe-rot);
+  cursor: pointer;
 }
-
-.formular .btn {
-  margin-top: var(--abstand-s);
-  align-self: flex-start;
+.formular__checkbox-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.5;
+  cursor: pointer;
 }
+.formular .btn { margin-top: 20px; align-self: flex-start; }
 
 
 /* ============================================================
-   4. KOMPONENTEN
+   5. TOP-BAR
    ============================================================ */
-
-/* ---- ROTER BALKEN OBEN ---- */
 .top-bar {
   width: 100%;
   height: 4px;
   background-color: var(--farbe-rot);
+  position: sticky;
+  top: 0;
+  z-index: 201;
 }
 
 
-/* ---- HEADER ---- */
+/* ============================================================
+   6. HEADER
+   ============================================================ */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  height: 60px;
+  height: var(--header-h-mobile);
   background-color: var(--farbe-weiss);
   position: sticky;
-  top: 0;
+  top: 4px; /* unter top-bar */
   z-index: 200;
   border-bottom: 1px solid var(--farbe-border);
+  gap: 12px;
 }
+
+/* Logo als Link */
+.header__logo-link {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+.header__logo-link:hover { opacity: 0.75; }
 
 .header__logo {
-  height: 36px;
+  height: 34px;
   width: auto;
-  flex-shrink: 0;
 }
 
-/* Rechte Seite: Sprache + Hamburger */
+/* Rechte Seite */
 .header__rechts {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-shrink: 0;
 }
 
-/* ---- HAUPTNAVIGATION (Mobile: versteckt) ---- */
-.header__nav-haupt {
+/* Partner-Logos (versteckt auf Mobile) */
+.header__partner-logos {
   display: none;
+  align-items: center;
+  gap: 14px;
 }
+.header__partner-logo {
+  height: 26px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.header__partner-logo:hover { opacity: 1; }
+
+
+/* ---- HAUPTNAVIGATION (Mobile: versteckt) ---- */
+.header__nav-haupt { display: none; }
 
 .header__nav-haupt-link {
   font-size: 13px;
@@ -234,12 +229,10 @@ address {
   transition: color 0.2s;
   position: relative;
 }
-
-/* Roter Unterstrich beim Hover */
 .header__nav-haupt-link::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 10px;
   right: 10px;
   height: 2px;
@@ -247,49 +240,118 @@ address {
   transform: scaleX(0);
   transition: transform 0.2s;
 }
-
-.header__nav-haupt-link:hover {
-  color: var(--farbe-schwarz);
-}
-
+.header__nav-haupt-link:hover { color: var(--farbe-schwarz); }
 .header__nav-haupt-link:hover::after,
-.header__nav-haupt-link--aktiv::after {
-  transform: scaleX(1);
+.header__nav-haupt-link--aktiv::after { transform: scaleX(1); }
+.header__nav-haupt-link--aktiv { color: var(--farbe-schwarz); }
+
+
+/* ---- SPRACHAUSWAHL DROPDOWN ---- */
+.sprache-dropdown {
+  position: relative;
 }
 
-.header__nav-haupt-link--aktiv {
-  color: var(--farbe-schwarz);
-}
-
-/* ---- SPRACHNAVIGATION ---- */
-.header__nav-sprache {
+.sprache-dropdown__toggle {
   display: flex;
-  gap: 4px;
-}
-
-.header__nav-link {
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: 1px solid var(--farbe-border);
+  padding: 5px 9px;
+  cursor: pointer;
+  font-family: var(--schrift);
   font-size: 12px;
   font-weight: 600;
   color: var(--farbe-grau-text);
-  padding: 4px 6px;
-  transition: color 0.2s;
+  transition: border-color 0.2s, color 0.2s;
   white-space: nowrap;
+  border-radius: 3px;
 }
-
-.header__nav-link--aktiv {
+.sprache-dropdown__toggle:hover {
+  border-color: var(--farbe-rot);
   color: var(--farbe-schwarz);
 }
 
-.header__nav-link:hover {
-  color: var(--farbe-rot);
+.sprache-dropdown__icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  opacity: 0.6;
+  display: inline-block;
 }
 
-/* ---- HAMBURGER-BUTTON (nur Mobile) ---- */
+.sprache-dropdown__aktiv {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.sprache-dropdown__pfeil {
+  width: 10px;
+  height: 6px;
+  color: var(--farbe-grau-text);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.sprache-dropdown--offen .sprache-dropdown__pfeil {
+  transform: rotate(180deg);
+}
+
+.sprache-dropdown__menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background-color: var(--farbe-weiss);
+  border: 1px solid var(--farbe-border);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  min-width: 140px;
+  z-index: 300;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.sprache-dropdown--offen .sprache-dropdown__menu {
+  display: block;
+}
+
+.sprache-dropdown__option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--farbe-grau-text);
+  transition: background-color 0.15s, color 0.15s;
+  cursor: pointer;
+}
+.sprache-dropdown__option:hover {
+  background-color: var(--farbe-grau-hell);
+  color: var(--farbe-schwarz);
+}
+.sprache-dropdown__option--aktiv {
+  color: var(--farbe-rot);
+  font-weight: 700;
+  background-color: rgba(204,0,0,0.04);
+}
+
+.sprache-dropdown__kuerzel {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-size: 12px;
+  min-width: 22px;
+}
+.sprache-dropdown__name {
+  font-size: 13px;
+}
+
+
+/* ---- HAMBURGER-BUTTON ---- */
 .nav-toggle {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 5px;
   width: 36px;
   height: 36px;
   background: none;
@@ -299,81 +361,72 @@ address {
   flex-shrink: 0;
 }
 
-.nav-toggle__linie {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: var(--farbe-schwarz);
-  transition: transform 0.25s, opacity 0.25s;
-  transform-origin: center;
+.nav-toggle__icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
 }
 
-/* Hamburger → X wenn geöffnet */
-.nav-toggle[aria-expanded="true"] .nav-toggle__linie:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+.nav-toggle__icon--hamburger { display: block; }
+.nav-toggle__icon--schliessen {
+  display: none;
+  color: var(--farbe-schwarz);
 }
-.nav-toggle[aria-expanded="true"] .nav-toggle__linie:nth-child(2) {
-  opacity: 0;
-}
-.nav-toggle[aria-expanded="true"] .nav-toggle__linie:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon--hamburger { display: none; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon--schliessen { display: block; }
+
 
 /* ---- MOBILES MENÜ (aufgeklappt) ---- */
 .header__nav-haupt--offen {
   display: flex !important;
   flex-direction: column;
   position: fixed;
-  top: 60px;
+  top: calc(var(--header-h-mobile) + 4px);
   left: 0;
   right: 0;
   background-color: var(--farbe-weiss);
-  border-bottom: 2px solid var(--farbe-rot);
-  padding: 12px 0 20px;
+  border-bottom: 3px solid var(--farbe-rot);
+  padding: 8px 0 16px;
   z-index: 199;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
-
 .header__nav-haupt--offen .header__nav-haupt-link {
-  font-size: 16px;
-  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 13px 24px;
   border-bottom: 1px solid var(--farbe-border);
+  color: var(--farbe-schwarz);
 }
-
-.header__nav-haupt--offen .header__nav-haupt-link:last-child {
-  border-bottom: none;
-}
-
-.header__nav-haupt--offen .header__nav-haupt-link::after {
-  display: none;
-}
+.header__nav-haupt--offen .header__nav-haupt-link:last-child { border-bottom: none; }
+.header__nav-haupt--offen .header__nav-haupt-link::after { display: none; }
+.header__nav-haupt--offen .header__nav-haupt-link:hover { color: var(--farbe-rot); }
 
 
-/* ---- HERO ---- */
+/* ============================================================
+   7. HERO
+   ============================================================ */
 .hero {
   position: relative;
   min-height: 60vh;
   overflow: hidden;
 }
-
 .hero__bild {
   width: 100%;
   height: 60vh;
   object-fit: cover;
   object-position: center top;
 }
-
 .hero__overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.82) 0%,
-    rgba(0,0,0,0.30) 50%,
+    rgba(0,0,0,0.85) 0%,
+    rgba(0,0,0,0.35) 50%,
     rgba(0,0,0,0.00) 100%
   );
 }
-
 .hero__inhalt {
   position: absolute;
   bottom: 28px;
@@ -381,32 +434,28 @@ address {
   right: 20px;
   color: var(--farbe-weiss);
 }
-
 .hero__label {
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--farbe-rot);
   margin-bottom: 10px;
 }
-
 .hero__titel {
   font-size: 28px;
   font-weight: 900;
-  line-height: 1.08;
+  line-height: 1.06;
   margin-bottom: 14px;
   letter-spacing: -0.01em;
 }
-
 .hero__untertitel {
   font-size: 14px;
-  line-height: 1.55;
+  line-height: 1.6;
   margin-bottom: 22px;
   opacity: 0.88;
   max-width: 480px;
 }
-
 .hero__buttons {
   display: flex;
   flex-wrap: wrap;
@@ -414,106 +463,157 @@ address {
 }
 
 
-/* ---- SECTIONS (allgemein) ---- */
-.section {
-  padding: 52px 20px;
-}
+/* ============================================================
+   8. SECTIONS (allgemein)
+   ============================================================ */
+.section { padding: 52px 20px; }
 
-.section--weiss   { background-color: var(--farbe-weiss); }
-.section--grau    { background-color: var(--farbe-grau-hell); }
-.section--rot     { background-color: var(--farbe-rot); }
-.section--schwarz { background-color: var(--farbe-schwarz); }
+.section--weiss  { background-color: var(--farbe-weiss); }
+.section--grau   { background-color: var(--farbe-grau-hell); }
+.section--rot    { background-color: var(--farbe-rot); }
+.section--schwarz{ background-color: var(--farbe-schwarz); }
+
+/* Zweispalten-Kopf */
+.section__kopf {
+  display: flex;
+  flex-direction: column;
+  gap: var(--abstand-m);
+}
+.section__kopf-links { flex: 0 0 auto; }
+.section__kopf-rechts { flex: 1; }
 
 .section__label {
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--farbe-rot);
   margin-bottom: 10px;
 }
-
-.section__label--weiss {
-  color: rgba(255,255,255,0.65);
-}
+.section__label--weiss { color: rgba(255,255,255,0.65); }
 
 .section__titel {
   font-size: 26px;
   font-weight: 900;
-  line-height: 1.12;
+  line-height: 1.1;
   letter-spacing: -0.01em;
   margin-bottom: var(--abstand-s);
 }
-
-.section__titel--weiss {
-  color: var(--farbe-weiss);
-}
+.section__titel--weiss { color: var(--farbe-weiss); }
 
 .section__text {
   font-size: 15px;
-  line-height: 1.75;
+  line-height: 1.78;
   color: var(--farbe-grau-text);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+}
+.section__text--weiss { color: rgba(255,255,255,0.82); }
+
+.section__text--bold {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--farbe-schwarz);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 20px;
+  margin-bottom: 8px;
 }
 
-.section__text--weiss {
-  color: rgba(255,255,255,0.82);
+.section__text--fazit {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--farbe-grau-text);
+  border-left: 3px solid var(--farbe-rot);
+  padding-left: 14px;
+  margin-top: var(--abstand-s);
 }
+
+.section__inhalt-block { margin-top: var(--abstand-m); }
 
 .section__liste {
-  margin-top: var(--abstand-s);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
+  margin-top: 8px;
 }
-
 .section__liste-punkt {
   font-size: 15px;
   line-height: 1.55;
   color: var(--farbe-grau-text);
-  padding-left: 18px;
+  padding-left: 16px;
   border-left: 3px solid var(--farbe-rot);
 }
 
 
-/* ---- ENGAGEMENT-OPTIONEN ---- */
-.engagement__optionen {
+/* ============================================================
+   9. ETHIK BOX
+   ============================================================ */
+.ethik__box {
+  background-color: var(--farbe-grau-hell);
+  padding: 24px 24px 20px;
+  border-left: 4px solid var(--farbe-rot);
+}
+.ethik__box-titel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--farbe-schwarz);
+  margin-bottom: 14px;
+}
+.ethik__box .section__liste-punkt { color: var(--farbe-grau-text); }
+.ethik__box-text {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--farbe-grau-text);
+  margin-top: 18px;
+  font-style: italic;
+}
+
+
+/* ============================================================
+   10. ENGAGEMENT
+   ============================================================ */
+.engagement__kopf {
   display: flex;
   flex-direction: column;
   gap: var(--abstand-m);
   margin-bottom: var(--abstand-m);
 }
+.engagement__kopf-links { flex: 1; }
+.engagement__kopf-rechts { flex: 0 0 auto; }
 
+.engagement__optionen {
+  display: flex;
+  flex-direction: column;
+  gap: var(--abstand-m);
+}
 .engagement__option {
   border-top: 1px solid rgba(255,255,255,0.2);
   padding-top: 20px;
 }
-
-.engagement__option:first-child {
-  border-top: none;
-  padding-top: 0;
-}
+.engagement__option:first-child { border-top: none; padding-top: 0; }
 
 .engagement__option-titel {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--farbe-weiss);
   margin-bottom: 8px;
 }
-
 .engagement__option-text {
   font-size: 14px;
   color: rgba(255,255,255,0.8);
-  margin-bottom: 14px;
-  line-height: 1.6;
+  margin-bottom: 16px;
+  line-height: 1.65;
+}
+.engagement__option-subtext {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 10px;
+  line-height: 1.5;
 }
 
-/* Social-Media-Icons */
-.engagement__social {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
+.engagement__social { display: flex; gap: 12px; align-items: center; }
 
 .engagement__social-link {
   display: flex;
@@ -525,56 +625,51 @@ address {
   border-radius: 50%;
   transition: background-color 0.2s, border-color 0.2s;
 }
-
 .engagement__social-link:hover {
   background-color: rgba(255,255,255,0.15);
-  border-color: rgba(255,255,255,0.8);
+  border-color: rgba(255,255,255,0.9);
 }
-
 .engagement__social-icon {
-  height: 20px;
-  width: 20px;
+  height: 20px; width: 20px;
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
 
 
-/* ---- ATHLETEN-KARTEN ---- */
+/* ============================================================
+   11. ATHLETEN-KARTEN
+   ============================================================ */
 .karten {
   display: flex;
   flex-direction: column;
   gap: var(--abstand-s);
   margin-top: var(--abstand-m);
 }
+.karten__fazit { margin-top: var(--abstand-s); }
 
 .karte {
   background-color: var(--farbe-weiss);
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
   transition: box-shadow 0.2s, transform 0.2s;
 }
-
 .karte:hover {
-  box-shadow: 0 6px 20px rgba(0,0,0,0.13);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+  transform: translateY(-3px);
 }
-
 .karte__bild {
-  width: 100%;
-  height: 220px;
+  width: 100%; height: 220px;
   object-fit: cover;
   background-color: var(--farbe-border);
 }
-
 .karte__info {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--farbe-rot);
   padding: 14px 16px 4px;
 }
-
 .karte__zitat {
   font-size: 14px;
   font-style: italic;
@@ -584,55 +679,75 @@ address {
 }
 
 
-/* ---- PARTNER-KARTEN ---- */
+/* ============================================================
+   12. PARTNER & TRÄGER
+   ============================================================ */
+.partner__kopf { margin-bottom: var(--abstand-m); }
+
 .partner__karten {
   display: flex;
   flex-direction: column;
   gap: var(--abstand-m);
-  margin-top: var(--abstand-m);
 }
-
 .partner__karte {
-  border-top: 1px solid rgba(255,255,255,0.25);
+  border-top: 1px solid rgba(255,255,255,0.2);
   padding-top: var(--abstand-s);
 }
-
 .partner__logo {
-  height: 40px;
-  width: auto;
-  max-width: 160px;
+  height: 38px; width: auto;
+  max-width: 150px;
   margin-bottom: 14px;
   filter: brightness(0) invert(1);
   object-fit: contain;
 }
-
 .partner__name {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--farbe-weiss);
   margin-bottom: 4px;
 }
-
 .partner__rolle {
   font-size: 13px;
   color: rgba(255,255,255,0.65);
   margin-bottom: 10px;
   line-height: 1.5;
 }
-
 .partner__link {
   font-size: 13px;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.5);
   text-decoration: underline;
   transition: color 0.2s;
 }
+.partner__link:hover { color: var(--farbe-weiss); }
 
-.partner__link:hover {
-  color: var(--farbe-weiss);
+
+/* ============================================================
+   13. KONTAKT LAYOUT
+   ============================================================ */
+.kontakt__layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--abstand-m);
+}
+.kontakt__info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.kontakt__logo {
+  height: auto; width: auto;
+  max-height: 80px; max-width: 180px;
+  object-fit: contain;
+}
+.kontakt__info-text {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
 }
 
 
-/* ---- FOOTER ---- */
+/* ============================================================
+   14. FOOTER
+   ============================================================ */
 .footer {
   background-color: var(--farbe-schwarz);
   color: var(--farbe-weiss);
@@ -641,25 +756,20 @@ address {
   flex-direction: column;
   gap: var(--abstand-m);
 }
-
 .footer__logo {
-  height: auto;
-  width: auto;
-  max-height: 60px;
-  max-width: 180px;
+  height: auto; width: auto;
+  max-height: 56px; max-width: 160px;
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
-
 .footer__adresse {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 14px;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.6;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.65;
 }
-
 .footer__link {
   color: var(--farbe-weiss);
   text-decoration: underline;
@@ -667,225 +777,145 @@ address {
   display: inline-block;
   transition: opacity 0.2s;
 }
+.footer__link:hover { opacity: 0.7; }
 
-.footer__link:hover {
-  opacity: 0.75;
-}
-
-.footer__nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-}
-
+.footer__nav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
 .footer__nav-link {
   font-size: 13px;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.5);
   transition: color 0.2s;
 }
-
-.footer__nav-link:hover {
-  color: var(--farbe-weiss);
-}
+.footer__nav-link:hover { color: var(--farbe-weiss); }
 
 .footer__copyright {
   font-size: 12px;
-  color: rgba(255,255,255,0.35);
-  line-height: 1.6;
+  color: rgba(255,255,255,0.3);
+  line-height: 1.65;
 }
 
 
 /* ============================================================
-   5. RESPONSIVE – TABLET AB 744px
-   Hauptnavigation erscheint, Hamburger verschwindet.
+   15. SCROLL-TO-TOP BUTTON
+   ============================================================ */
+.scroll-top {
+  position: fixed;
+  bottom: 28px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 150;
+  pointer-events: none;
+}
+.scroll-top img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+.scroll-top--sichtbar {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.scroll-top:hover { transform: translateY(-3px); }
+
+
+/* ============================================================
+   16. RESPONSIVE – TABLET AB 744px
    ============================================================ */
 @media (min-width: 744px) {
 
   .header {
     padding: 0 40px;
-    height: 64px;
+    height: var(--header-h-tablet);
+    top: 4px;
+    gap: 16px;
   }
+  .header__logo { height: 38px; }
 
-  .header__logo {
-    height: 40px;
-  }
+  /* Partner-Logos einblenden */
+  .header__partner-logos { display: flex; }
 
   /* Hauptnavigation einblenden */
-  .header__nav-haupt {
-    display: flex;
-    gap: 4px;
-  }
+  .header__nav-haupt { display: flex; gap: 2px; }
 
   /* Hamburger ausblenden */
-  .nav-toggle {
-    display: none;
+  .nav-toggle { display: none; }
+
+  /* Mobiles Menü korrekt positionieren */
+  .header__nav-haupt--offen {
+    top: calc(var(--header-h-tablet) + 4px);
   }
 
+  /* Hero: Zweispalten (Text links | Bild rechts) */
   .hero {
     min-height: 65vh;
+    display: grid;
+    grid-template-columns: 48% 52%;
+    grid-template-rows: 1fr;
   }
-
   .hero__bild {
+    grid-column: 2;
+    grid-row: 1;
     height: 65vh;
+    width: 100%;
+    object-position: center center;
   }
-
+  .hero__overlay {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    background: linear-gradient(
+      to right,
+      rgba(0,0,0,0.88) 0%,
+      rgba(0,0,0,0.55) 48%,
+      rgba(0,0,0,0.08) 100%
+    );
+  }
   .hero__inhalt {
-    left: 40px;
-    right: 40px;
-    bottom: 44px;
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+    bottom: auto; left: auto; right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px 32px 44px 40px;
+    color: var(--farbe-weiss);
   }
+  .hero__titel { font-size: 40px; }
 
-  .hero__titel {
-    font-size: 42px;
-  }
+  /* Sections: Zweispalten-Kopf */
+  .section { padding: 64px 40px; }
 
-  .section {
-    padding: 64px 40px;
-  }
-
-  .section__titel {
-    font-size: 32px;
-  }
-
-  .footer {
-    padding: 56px 40px;
-  }
-
-  .footer__logo {
-    max-height: 68px;
-    max-width: 200px;
-  }
-}
-
-
-/* ============================================================
-   6. RESPONSIVE – DESKTOP AB 1280px
-   ============================================================ */
-@media (min-width: 1280px) {
-
-  .header {
-    padding: 0 64px;
-    height: 72px;
-  }
-
-  .header__logo {
-    height: 44px;
-  }
-
-  .header__nav-haupt {
-    gap: 8px;
-  }
-
-  .header__nav-haupt-link {
-    font-size: 14px;
-    padding: 8px 12px;
-  }
-
-  .header__nav-link {
-    font-size: 13px;
-  }
-
-  .hero {
-    min-height: 70vh;
-  }
-
-  .hero__bild {
-    height: 70vh;
-  }
-
-  .hero__inhalt {
-    left: 64px;
-    right: 64px;
-    bottom: 64px;
-    max-width: 700px;
-  }
-
-  .hero__titel {
-    font-size: 60px;
-    margin-bottom: 16px;
-  }
-
-  .hero__untertitel {
-    font-size: 16px;
-  }
-
-  .btn {
-    padding: 14px 28px;
-    font-size: 14px;
-  }
-
-  .section {
-    padding: 80px 64px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .section--weiss,
-  .section--grau,
-  .section--rot,
-  .section--schwarz {
-    max-width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .section--weiss > *,
-  .section--grau > *,
-  .section--rot > *,
-  .section--schwarz > * {
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-
-  .section__titel {
-    font-size: 40px;
-  }
-
-  /* Karten nebeneinander */
-  .karten {
+  .section__kopf {
     flex-direction: row;
-    max-width: 1200px !important;
-    padding-left: 40px !important;
-    padding-right: 40px !important;
+    gap: 56px;
+    align-items: flex-start;
   }
+  .section__kopf-links { flex: 0 0 260px; }
+  .section__kopf-rechts { flex: 1; }
+  .section__titel { font-size: 30px; margin-bottom: 0; }
 
-  .karte {
-    flex: 1;
-  }
+  /* Ziel inhalt-block unter beiden Spalten */
+  .section__inhalt-block { margin-top: var(--abstand-m); }
 
-  /* Partner-Karten nebeneinander */
-  .partner__karten {
-    flex-direction: row;
-    max-width: 1200px !important;
-    padding-left: 40px !important;
-    padding-right: 40px !important;
-  }
-
-  .partner__karte {
-    flex: 1;
-    border-top: none;
-    border-left: 1px solid rgba(255,255,255,0.2);
-    padding-top: 0;
-    padding-left: var(--abstand-s);
-  }
-
-  .partner__karte:first-child {
-    border-left: none;
-    padding-left: 0;
-  }
-
-  /* Engagement nebeneinander */
-  .engagement__optionen {
+  /* Engagement Kopf */
+  .engagement__kopf {
     flex-direction: row;
     align-items: flex-start;
-    max-width: 1200px !important;
-    padding-left: 40px !important;
-    padding-right: 40px !important;
+    gap: 56px;
   }
+  .engagement__kopf-rechts { flex: 0 0 auto; min-width: 240px; }
+  .engagement__kopf-rechts .section__titel { font-size: 34px; }
 
+  /* Engagement 3 Spalten */
+  .engagement__optionen { flex-direction: row; align-items: flex-start; }
   .engagement__option {
     flex: 1;
     border-top: none;
@@ -893,10 +923,142 @@ address {
     padding-top: 0;
     padding-left: var(--abstand-s);
   }
+  .engagement__option:first-child { border-left: none; padding-left: 0; }
 
-  .engagement__option:first-child {
-    border-left: none;
+  /* Karten: 3 Spalten */
+  .karten { flex-direction: row; }
+  .karte  { flex: 1; }
+
+  /* Partner: 3 Spalten */
+  .partner__karten { flex-direction: row; }
+  .partner__karte {
+    flex: 1;
+    border-top: none;
+    border-left: 1px solid rgba(255,255,255,0.2);
+    padding-top: 0;
+    padding-left: var(--abstand-s);
+  }
+  .partner__karte:first-child { border-left: none; padding-left: 0; }
+
+  /* Kontakt: 2 Spalten */
+  .kontakt__layout { flex-direction: row; align-items: flex-start; gap: 56px; }
+  .kontakt__info   { flex: 0 0 180px; }
+  .formular        { flex: 1; margin-top: 0; }
+
+  /* Footer */
+  .footer { padding: 56px 40px; }
+  .footer__logo { max-height: 62px; max-width: 180px; }
+
+  /* Scroll-top */
+  .scroll-top { bottom: 32px; right: 32px; }
+}
+
+
+/* ============================================================
+   17. RESPONSIVE – DESKTOP AB 1280px
+   ============================================================ */
+@media (min-width: 1280px) {
+
+  .header {
+    padding: 0 64px;
+    height: var(--header-h-desktop);
+  }
+  .header__logo { height: 42px; }
+  .header__nav-haupt { gap: 6px; }
+  .header__nav-haupt-link { font-size: 14px; padding: 8px 12px; }
+  .header__partner-logo { height: 28px; }
+
+  .header__nav-haupt--offen {
+    top: calc(var(--header-h-desktop) + 4px);
+  }
+
+  /* Hero */
+  .hero { min-height: 72vh; grid-template-columns: 50% 50%; }
+  .hero__bild { height: 72vh; }
+  .hero__inhalt { padding: 56px 48px 64px 64px; }
+  .hero__titel { font-size: 58px; margin-bottom: 18px; }
+  .hero__untertitel { font-size: 16px; }
+  .btn { padding: 13px 26px; font-size: 13px; }
+
+  /* Sections: volle Breite Hintergrund, innenliegender Content */
+  .section {
+    padding: 80px 64px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .section--weiss,
+  .section--grau,
+  .section--rot,
+  .section--schwarz {
+    max-width: 100%;
     padding-left: 0;
+    padding-right: 0;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  /* Innenliegender Content-Wrapper */
+  .section--weiss .section__kopf,
+  .section--grau  .section__kopf,
+  .section--rot   .section__kopf,
+  .section--schwarz .section__kopf,
+  .section--weiss .section__inhalt-block,
+  .section--grau  .section__inhalt-block {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+
+  .section__titel { font-size: 38px; }
+  .section__kopf-links { flex: 0 0 300px; }
+
+  /* Karten */
+  .karten,
+  .karten__fazit {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+
+  /* Engagement */
+  .engagement__kopf,
+  .engagement__optionen {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+  .engagement__kopf-rechts .section__titel { font-size: 40px; }
+
+  /* Partner */
+  .partner__kopf {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+  .partner__karten {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+
+  /* Kontakt */
+  .kontakt__layout {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 64px;
+    padding-right: 64px;
   }
 
   /* Footer Grid */
@@ -904,82 +1066,32 @@ address {
     display: grid;
     grid-template-columns: auto 1fr 1fr;
     grid-template-rows: auto auto;
-    gap: 32px 48px;
+    gap: 28px 48px;
     padding: 64px;
   }
-
-  .footer__logo {
-    grid-column: 1;
-    grid-row: 1;
-    max-height: 72px;
-    max-width: 200px;
-    align-self: start;
-  }
-
-  .footer__adresse {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .footer__nav {
-    grid-column: 3;
-    grid-row: 1;
-    flex-direction: column;
-    gap: 8px;
-  }
-
+  .footer__logo    { grid-column: 1; grid-row: 1; max-height: 68px; max-width: 190px; align-self: start; }
+  .footer__adresse { grid-column: 2; grid-row: 1; }
+  .footer__nav     { grid-column: 3; grid-row: 1; flex-direction: column; gap: 8px; }
   .footer__copyright {
     grid-column: 1 / -1;
     grid-row: 2;
     border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 20px;
+    padding-top: 18px;
   }
+
+  .scroll-top { bottom: 40px; right: 40px; }
 }
 
 
 /* ============================================================
-   7. RESPONSIVE – GROSSER DESKTOP AB 1440px
+   18. RESPONSIVE – GROSSER DESKTOP AB 1440px
    ============================================================ */
 @media (min-width: 1440px) {
 
-  .hero__titel {
-    font-size: 72px;
-  }
+  .hero__titel { font-size: 68px; }
+  .hero__inhalt { padding: 72px 56px 80px 80px; }
+  .section__titel { font-size: 44px; }
 
-  .hero__inhalt {
-    left: 80px;
-    bottom: 80px;
-    max-width: 780px;
-  }
-
-  .section__titel {
-    font-size: 46px;
-  }
-
-  .section--weiss > *,
-  .section--grau > *,
-  .section--rot > *,
-  .section--schwarz > * {
-    max-width: 900px;
-    padding-left: 64px;
-    padding-right: 64px;
-  }
-
-  .karten,
-  .partner__karten,
-  .engagement__optionen {
-    max-width: 1200px !important;
-    padding-left: 64px !important;
-    padding-right: 64px !important;
-  }
-
-  .footer {
-    padding: 80px;
-    gap: 40px 64px;
-  }
-
-  .footer__logo {
-    max-height: 80px;
-    max-width: 220px;
-  }
+  .footer { padding: 80px; gap: 36px 56px; }
+  .footer__logo { max-height: 72px; max-width: 200px; }
 }
