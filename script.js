@@ -1,128 +1,98 @@
 /* ============================================================
-   SWISS TAEKWONDO – UHP TEAM
-   script.js
+   SWISS TAEKWONDO – UHP TEAM | script.js
    ============================================================ */
-
 
 /* ============================================================
    1. HAMBURGER-MENÜ
    ============================================================ */
-const navToggle = document.querySelector('.nav-toggle');
-const mainNav   = document.querySelector('.header__nav-haupt');
+const navToggle = document.getElementById('nav-toggle');
+const mainNav   = document.getElementById('hauptnav');
 
-navToggle.addEventListener('click', function () {
-  const istOffen = mainNav.classList.toggle('header__nav-haupt--offen');
-  navToggle.setAttribute('aria-expanded', istOffen);
-  navToggle.setAttribute('aria-label', istOffen ? 'Navigation schliessen' : 'Navigation öffnen');
-});
-
-
-/* ============================================================
-   2. MENÜ SCHLIESSEN BEI LINK-KLICK
-   ============================================================ */
-const navLinks = document.querySelectorAll('.header__nav-haupt-link');
-
-navLinks.forEach(function (link) {
-  link.addEventListener('click', function () {
-    mainNav.classList.remove('header__nav-haupt--offen');
-    navToggle.setAttribute('aria-expanded', 'false');
-    navToggle.setAttribute('aria-label', 'Navigation öffnen');
-  });
-});
-
-
-/* ============================================================
-   3. AKTIVEN NAVIGATIONSPUNKT MARKIEREN
-   ============================================================ */
-const sektionen = document.querySelectorAll('section[id]');
-
-window.addEventListener('scroll', function () {
-  const scrollY = window.scrollY + 90;
-
-  sektionen.forEach(function (sektion) {
-    const oben  = sektion.offsetTop;
-    const hoehe = sektion.offsetHeight;
-    const id    = sektion.getAttribute('id');
-    const link  = document.querySelector('.header__nav-haupt-link[href="#' + id + '"]');
-
-    if (link) {
-      if (scrollY >= oben && scrollY < oben + hoehe) {
-        link.classList.add('header__nav-haupt-link--aktiv');
-      } else {
-        link.classList.remove('header__nav-haupt-link--aktiv');
-      }
-    }
-  });
-}, { passive: true });
-
-
-/* ============================================================
-   4. SPRACHAUSWAHL DROPDOWN
-   ============================================================ */
-const sprachDropdown = document.getElementById('sprache-dropdown');
-
-if (sprachDropdown) {
-  const toggle  = sprachDropdown.querySelector('.sprache-dropdown__toggle');
-  const optionen = sprachDropdown.querySelectorAll('.sprache-dropdown__option');
-
-  toggle.addEventListener('click', function (e) {
-    e.stopPropagation();
-    const istOffen = sprachDropdown.classList.toggle('sprache-dropdown--offen');
-    toggle.setAttribute('aria-expanded', istOffen);
+if (navToggle && mainNav) {
+  navToggle.addEventListener('click', function () {
+    const offen = mainNav.classList.toggle('header__nav--offen');
+    navToggle.setAttribute('aria-expanded', offen);
+    navToggle.setAttribute('aria-label', offen ? 'Navigation schliessen' : 'Navigation öffnen');
+    document.body.style.overflow = offen ? 'hidden' : '';
   });
 
-  // Option wählen
-  optionen.forEach(function (option) {
-    option.addEventListener('click', function (e) {
-      e.preventDefault();
-      const kuerzel = option.querySelector('.sprache-dropdown__kuerzel').textContent;
-
-      // Aktiv-Klasse aktualisieren
-      optionen.forEach(o => o.classList.remove('sprache-dropdown__option--aktiv'));
-      option.classList.add('sprache-dropdown__option--aktiv');
-
-      // Toggle-Text aktualisieren
-      sprachDropdown.querySelector('.sprache-dropdown__aktiv').textContent = kuerzel;
-
-      // Dropdown schliessen
-      sprachDropdown.classList.remove('sprache-dropdown--offen');
-      toggle.setAttribute('aria-expanded', 'false');
+  mainNav.querySelectorAll('.header__nav-link').forEach(function (link) {
+    link.addEventListener('click', function () {
+      mainNav.classList.remove('header__nav--offen');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Navigation öffnen');
+      document.body.style.overflow = '';
     });
-  });
-
-  // Schliessen bei Klick ausserhalb
-  document.addEventListener('click', function (e) {
-    if (!sprachDropdown.contains(e.target)) {
-      sprachDropdown.classList.remove('sprache-dropdown--offen');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  // Schliessen mit Escape
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      sprachDropdown.classList.remove('sprache-dropdown--offen');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
   });
 }
 
+/* ============================================================
+   2. AKTIVER NAV-PUNKT BEIM SCROLLEN
+   ============================================================ */
+const sektionen = document.querySelectorAll('section[id]');
+
+function updateNav() {
+  const scrollY = window.scrollY + 100;
+  sektionen.forEach(function (s) {
+    const link = document.querySelector('.header__nav-link[href="#' + s.id + '"]');
+    if (!link) return;
+    if (scrollY >= s.offsetTop && scrollY < s.offsetTop + s.offsetHeight) {
+      link.classList.add('header__nav-link--aktiv');
+    } else {
+      link.classList.remove('header__nav-link--aktiv');
+    }
+  });
+}
+window.addEventListener('scroll', updateNav, { passive: true });
 
 /* ============================================================
-   5. SCROLL-TO-TOP BUTTON
+   3. SPRACHAUSWAHL DROPDOWN
    ============================================================ */
-const scrollTopBtn = document.getElementById('scroll-top');
+const spracheEl = document.getElementById('sprache-el');
 
-if (scrollTopBtn) {
+if (spracheEl) {
+  const toggle   = spracheEl.querySelector('.sprache__toggle');
+  const label    = spracheEl.querySelector('.sprache__text');
+  const optionen = spracheEl.querySelectorAll('.sprache__option');
+
+  function schliessenSprache() {
+    spracheEl.classList.remove('sprache--offen');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  toggle.addEventListener('click', function (e) {
+    e.stopPropagation();
+    const offen = spracheEl.classList.toggle('sprache--offen');
+    toggle.setAttribute('aria-expanded', offen);
+  });
+
+  optionen.forEach(function (opt) {
+    opt.addEventListener('click', function (e) {
+      e.preventDefault();
+      optionen.forEach(o => o.classList.remove('sprache__option--aktiv'));
+      opt.classList.add('sprache__option--aktiv');
+      label.textContent = opt.textContent.trim();
+      schliessenSprache();
+    });
+  });
+
+  document.addEventListener('click', schliessenSprache);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') schliessenSprache();
+  });
+}
+
+/* ============================================================
+   4. SCROLL-TO-TOP (floating)
+   ============================================================ */
+const scrollBtn = document.getElementById('scroll-top');
+
+if (scrollBtn) {
   window.addEventListener('scroll', function () {
-    if (window.scrollY > 400) {
-      scrollTopBtn.classList.add('scroll-top--sichtbar');
-    } else {
-      scrollTopBtn.classList.remove('scroll-top--sichtbar');
-    }
+    scrollBtn.classList.toggle('scroll-top--vis', window.scrollY > 400);
   }, { passive: true });
 
-  scrollTopBtn.addEventListener('click', function () {
+  scrollBtn.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
