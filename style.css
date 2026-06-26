@@ -304,6 +304,10 @@ body {
   color: var(--weiss);
   opacity: .7;
   margin-bottom: 16px;
+  display: inline-block;
+  align-self: flex-start;
+  border-top: 1px solid rgba(255,255,255,.6);
+  padding-top: 18px;
 }
 .hero__titel {
   font-size: 36px;
@@ -321,12 +325,71 @@ body {
 }
 .hero__buttons { display: flex; flex-wrap: wrap; gap: 10px; }
 
-/* Mobile: Hero stapelt vertikal */
+/* Mobile: Bild als Hintergrund, Text als Overlay */
 @media (max-width: 767px) {
-  .hero { flex-direction: column; min-height: auto; }
-  .hero__links { flex: none; padding: 32px 20px 36px; min-height: 55vw; justify-content: flex-end; }
-  .hero__rechts { height: 52vw; flex: none; }
-  .hero__titel { font-size: 28px; }
+  .hero {
+    position: relative;
+    flex-direction: column;
+    min-height: 100svh;
+    min-height: 100vh;
+  }
+  .hero__rechts {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    height: 100%;
+    flex: none;
+  }
+  .hero__bild {
+    object-position: center 20%;
+  }
+  .hero__links {
+    position: relative;
+    z-index: 1;
+    flex: none;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 28px 24px 52px;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,.92) 0%,
+      rgba(0,0,0,.55) 45%,
+      rgba(0,0,0,.15) 70%,
+      transparent 100%
+    );
+  }
+  .hero__label {
+    font-size: 9px;
+    letter-spacing: .2em;
+    margin-bottom: 12px;
+    opacity: .75;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,.7);
+    display: inline-block;
+    align-self: center;
+  }
+  .hero__titel {
+    font-size: 32px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .hero__untertitel {
+    font-size: 14px;
+    color: rgba(255,255,255,.82);
+    margin-bottom: 28px;
+    line-height: 1.65;
+  }
+  .hero__buttons {
+    justify-content: center;
+  }
+  .hero__buttons .btn {
+    font-size: 13px;
+    padding: 13px 24px;
+  }
 }
 
 /* ============================================================
@@ -501,12 +564,12 @@ body {
 /* Tablet+: Links rechts von Rechts (Titel links, Texte rechts = spiegelverkehrt) */
 @media (min-width: 768px) {
   .ziel__links  { order: 1; flex: 1; }
-  .ziel__rechts { order: 2; flex: 0 0 280px; padding-left: 48px; }
+  .ziel__rechts { order: 2; flex: 1; padding-left: 48px; }
   .ziel__logo   { width: 220px; }
 }
 
 @media (min-width: 1280px) {
-  .ziel__rechts { flex: 0 0 320px; }
+  .ziel__rechts { flex: 1; }
   .ziel__logo   { width: 260px; }
 }
 
@@ -856,6 +919,7 @@ body {
 .benefits__fazit-box {
   background: var(--weiss);
   border-radius: 4px;
+  border-top: 3px solid var(--rot);
   padding: 18px 20px;
   font-size: 14px;
   line-height: 1.7;
@@ -987,8 +1051,8 @@ body {
 
 .kontakt__label {
   font-size: 12px;
-  font-weight: 500;
-  color: rgba(255,255,255,.65);
+  font-weight: 600;
+  color: var(--weiss);
 }
 
 .kontakt__input {
@@ -996,16 +1060,16 @@ body {
   padding: 10px 13px;
   font-family: var(--f);
   font-size: 14px;
-  background: rgba(255,255,255,.07);
+  background: var(--weiss);
   border: 1px solid rgba(255,255,255,.15);
-  color: var(--weiss);
+  color: var(--schwarz);
   outline: none;
-  transition: border-color .2s, background .2s;
-  border-radius: 3px;
+  transition: border-color .2s, box-shadow .2s;
+  border-radius: 6px;
   -webkit-appearance: none;
 }
-.kontakt__input::placeholder { color: rgba(255,255,255,.3); }
-.kontakt__input:focus { border-color: rgba(255,255,255,.45); background: rgba(255,255,255,.11); }
+.kontakt__input::placeholder { color: rgba(0,0,0,.35); }
+.kontakt__input:focus { border-color: var(--rot); box-shadow: 0 0 0 2px rgba(193,0,42,.15); }
 
 .kontakt__textarea {
   min-height: 100px;
@@ -1094,31 +1158,34 @@ body {
    ============================================================ */
 .footer {
   background: var(--schwarz);
-  border-top: 1px solid rgba(255,255,255,.1);
-  padding: 20px 20px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding: 18px 20px;
 }
 
 .footer__zeile {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   align-items: flex-start;
 }
 
 .footer__nav {
   display: flex;
-  gap: 20px;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 .footer__nav-link {
-  font-size: 13px;
+  font-size: 12px;
+  font-weight: 500;
   color: rgba(255,255,255,.55);
   transition: color .2s;
+  letter-spacing: .02em;
 }
 .footer__nav-link:hover { color: var(--weiss); }
 
 .footer__mitte {
-  font-size: 13px;
-  color: rgba(255,255,255,.4);
+  font-size: 12px;
+  color: rgba(255,255,255,.35);
   line-height: 1.5;
 }
 
@@ -1129,8 +1196,24 @@ body {
 }
 
 .footer__copy {
-  font-size: 13px;
-  color: rgba(255,255,255,.4);
+  font-size: 12px;
+  color: rgba(255,255,255,.35);
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .footer { padding: 18px 28px; }
+  .footer__zeile {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .footer__mitte {
+    flex: 1;
+    text-align: center;
+    padding: 0 24px;
+  }
 }
 
 /* Scroll-Top inline im Footer */
@@ -1157,21 +1240,11 @@ body {
 .scroll-top--vis { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .scroll-top:hover { transform: translateY(-3px) !important; }
 
-@media (min-width: 768px) {
-  .footer { padding: 20px 28px; }
-  .footer__zeile {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-  }
-}
-
 @media (min-width: 1280px) {
-  .footer { padding: 20px 40px; }
+  .footer { padding: 18px 40px; }
 }
 @media (min-width: 1440px) {
-  .footer { padding: 20px 56px; }
+  .footer { padding: 18px 56px; }
 }
 
 /* ============================================================
@@ -1217,7 +1290,7 @@ body {
   /* Sections */
   .section { padding: 64px 28px; }
   .section__inner { flex-direction: row; gap: 48px; align-items: flex-start; }
-  .section__kopf-links { flex: 0 0 220px; }
+  .section__kopf-links { flex: 1; }
   .section__titel { font-size: 28px; margin-bottom: 0; }
 
   /* Engagement Kopf */
@@ -1239,7 +1312,7 @@ body {
 
 
   /* Partner: auf Tablet bleiben Karten vertikal gestapelt */
-  .partner__karten { flex-direction: column; gap: 12px; }
+  .partner__karten { flex-direction: row; gap: 12px; }
   .partner__karte { flex: none; border: none; padding: 18px 20px; }
 
 
@@ -1277,6 +1350,7 @@ body {
   .engagement__kopf,
   .engagement__karten,
   .karten,
+  .benefits__fazit-wrap,
   .partner__kopf,
   .partner__karten,
   .kontakt__wrap,
@@ -1291,7 +1365,7 @@ body {
   .section__titel--split-weiss { font-size: 44px; }
 
   .section__titel { font-size: 34px; }
-  .section__kopf-links { flex: 0 0 260px; }
+  .section__kopf-links { flex: 1; }
 
 }
 
@@ -1309,6 +1383,7 @@ body {
   .engagement__kopf,
   .engagement__karten,
   .karten,
+  .benefits__fazit-wrap,
   .partner__kopf,
   .partner__karten,
   .kontakt__wrap,
